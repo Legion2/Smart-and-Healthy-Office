@@ -1,5 +1,6 @@
 # Smart and Healthy Office
 
+This project consists of sensors (simulated), a Controller with Repository and Web Server and a WebApp.
 ## Getting started
 Clone this repository.
 Create a copy of the `example.env` file and name it `.env`, adjust the values in for your needs.

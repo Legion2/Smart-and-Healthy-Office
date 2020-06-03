@@ -8,6 +8,11 @@ services:
     volumes:
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
+  temperature-test:
+    build: temperature
+    environment:
+      MQTT_HOST: broker
+
 
 volumes:
   mosquitto-data:

@@ -1,6 +1,10 @@
-package io.github.legion2
+package io.github.legion2.smart_and_healthy_office.repository
 
+import com.beust.klaxon.Klaxon
+import io.github.legion2.smart_and_healthy_office.model.Room
+import io.github.legion2.smart_and_healthy_office.mqtt.Message
 import org.eclipse.microprofile.config.inject.ConfigProperty
+import java.lang.IllegalArgumentException
 import java.nio.file.Files
 import java.nio.file.Path
 import javax.annotation.PostConstruct
@@ -16,10 +20,12 @@ class RoomRepository {
     @PostConstruct
     private fun setup() {
         val configFile = Files.readString(Path.of(configFilePath))
+        val rooms = Klaxon().parse<RoomConfig>(configFile) ?: throw IllegalArgumentException("Can not load config file")
 
-        val rooms = JsonbBuilder.create().fromJson(configFile, RoomConfig::class.java)
-
-        rooms.rooms.forEach { room ->
+        rooms.rooms.forEach { roomMetadata ->
+            val room = Room()
+            room.id = roomMetadata.id
+            room.name = roomMetadata.name
             this.rooms[room.id] = room
         }
     }

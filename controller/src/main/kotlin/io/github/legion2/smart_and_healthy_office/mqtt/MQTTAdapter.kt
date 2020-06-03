@@ -1,9 +1,10 @@
-package io.github.legion2
+package io.github.legion2.smart_and_healthy_office.mqtt
 
+import com.beust.klaxon.Klaxon
+import io.github.legion2.smart_and_healthy_office.repository.RoomRepository
 import org.eclipse.microprofile.reactive.messaging.Incoming
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
-import javax.json.bind.JsonbBuilder
 
 @ApplicationScoped
 class MQTTAdapter {
@@ -14,8 +15,7 @@ class MQTTAdapter {
     @Incoming("temperature")
     fun getTemperature(payload: ByteArray) {
         val jsonString = String(payload)
-        val jsonb = JsonbBuilder.create()
-        val message = jsonb.fromJson(jsonString, Message::class.java)
+        val message = Klaxon().parse<Message>(jsonString) ?: return
         val room = roomRepository.get(message.tags.room) ?: return
         room.temperature = message.fields.temperature
 
