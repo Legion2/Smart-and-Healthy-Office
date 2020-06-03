@@ -1,0 +1,20 @@
+{
+    "rooms": [
+        {
+            "id": "test",
+            "name": "Test Room"
+        },
+        {
+            "id": "kitchen",
+            "name": "Kitchen"
+        },
+        {
+            "id": "office",
+            "name": "Office Room"
+        },
+        {
+            "id": "meeting-room",
+            "name": "Meeting Room"
+        }
+    ]
+}

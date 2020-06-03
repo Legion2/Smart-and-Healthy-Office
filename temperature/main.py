@@ -6,7 +6,7 @@ import random
 
 mqtt_host = os.getenv("MQTT_HOST", "localhost")
 mqtt_port = os.getenv("MQTT_PORT", 1883)
-tag_host = os.getenv("TAG_HOST", "test")
+room_id = os.getenv("ROOM_ID", "test")
 
 # The callback for when the client receives a CONNACK response from the server.
 
@@ -60,8 +60,8 @@ while True:
                               "fields": {
                                   "temperature": temperature
                               }, "tags": {
-                                  "host": tag_host
+                                  "room": room_id
                               },
                               "timestamp": get_timestamp()})
     client.publish("test/temperature", json_string)
-    time.sleep(2)
+    time.sleep(10)
