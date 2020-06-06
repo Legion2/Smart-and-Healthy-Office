@@ -17,12 +17,8 @@ Be aware that it’s not an _über-jar_ as the dependencies are copied into the 
 
 The application is now runnable using `java -jar target/smart-and-healthy-office-controller-1.0.0-SNAPSHOT-runner.jar`.
 
-## Creating a native executable
+## REST API
 
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your native executable with: `./target/smart-and-healthy-office-controller-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+The Controller provides an REST API.
+The API is documented with OpenAPI which can be loaded from the `/openapi` path after starting the controller.
+There is also an Swagger UI at `/swagger-ui` available in dev mode.
