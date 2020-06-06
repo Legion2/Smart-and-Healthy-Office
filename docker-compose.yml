@@ -22,10 +22,23 @@ services:
     build:
       context: controller
       dockerfile: Dockerfile.jvm
+    environment:
+      MQTT_HOST: broker
+      MQTT_PORT: "1883"
+      CONFIG_PATH: /config
+    volumes:
+      - ./rooms.json:/config/rooms.json:ro
+      - ./localization.json:/config/localization.json:ro
   temperature-test:
     build: temperature
     environment:
       MQTT_HOST: broker
+      ROOM_ID: test
+  temperature-office:
+    build: temperature
+    environment:
+      MQTT_HOST: broker
+      ROOM_ID: office
   web-app:
     build: web-app
 
