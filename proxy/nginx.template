@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    server_name _ localhost ${HOST_NAME};
+
+    location /api/ {
+        proxy_pass http://controller:8080/;
+    }
+    location / {
+        proxy_pass http://web-app:80/;
+    }
+}
