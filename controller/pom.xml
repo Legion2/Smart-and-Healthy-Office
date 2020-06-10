@@ -62,8 +62,9 @@
       <artifactId>quarkus-kotlin</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel.quarkus</groupId>
-      <artifactId>camel-quarkus-influxdb</artifactId>
+      <groupId>com.influxdb</groupId>
+      <artifactId>influxdb-client-kotlin</artifactId>
+      <version>1.8.0</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -77,6 +78,10 @@
       <groupId>com.beust</groupId>
       <artifactId>klaxon</artifactId>
       <version>5.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-scheduler</artifactId>
     </dependency>
   </dependencies>
   <repositories>

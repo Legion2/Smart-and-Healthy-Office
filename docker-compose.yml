@@ -18,6 +18,16 @@ services:
     volumes:
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
+  influxdb:
+    image: influxdb:1.8.0
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      INFLUXDB_DB: data
+      INFLUXDB_USER: controller
+      INFLUXDB_USER_PASSWORD:
+      INFLUXDB_DATA_QUERY_LOG_ENABLED: "false"
+      INFLUXDB_HTTP_LOG_ENABLED: "false"
   controller:
     build:
       context: controller
@@ -26,6 +36,8 @@ services:
       MQTT_HOST: broker
       MQTT_PORT: "1883"
       CONFIG_PATH: /config
+      INFLUXDB_USER: controller
+      INFLUXDB_USER_PASSWORD:
     volumes:
       - ./rooms.json:/config/rooms.json:ro
       - ./localization.json:/config/localization.json:ro
@@ -46,3 +58,4 @@ services:
 volumes:
   mosquitto-data:
   mosquitto-log:
+  influxdb-storage:
