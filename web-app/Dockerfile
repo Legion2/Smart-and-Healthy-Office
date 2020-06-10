@@ -4,8 +4,9 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-#RUN ng build --prod
+RUN ng build --prod
 
-FROM nginx:1.17-alpine
-
-#COPY --from=builder /usr/src/app/dist/web-app /usr/share/nginx/html
+# Deploy Angular App
+FROM nginx:1.15.12-alpine
+COPY --from=builder /usr/src/app/dist/web-app /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf

@@ -19,13 +19,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  title = 'web-app';
-
   constructor(private router: Router) {
     this.navLinks = [
       {
-        label: 'Temperature',
-        link: './temperature',
+        label: 'Room',
+        link: './room',
         index: 0,
       }
     ];
