@@ -1,8 +1,20 @@
 {
     "users": [
         {
-            "id": "test",
+            "id": "user1",
             "mac": "46:03:8F:12:DA:DD"
+        },
+        {
+            "id": "user2",
+            "mac": "7F:22:7E:1C:83:3F"
+        },
+        {
+            "id": "user3",
+            "mac": "3E:CB:CC:EA:27:D9"
+        },
+        {
+            "id": "user4",
+            "mac": "A4:88:E0:A4:0B:35"
         }
     ]
 }

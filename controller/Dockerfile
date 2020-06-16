@@ -52,7 +52,7 @@ COPY --from=pddl-builder /workspace/downward/fast-downward.py /workspace/downwar
 COPY --from=pddl-builder /workspace/downward/builds/release/bin/ /workspace/downward/builds/release/bin/
 COPY --from=pddl-builder /workspace/downward/driver /workspace/downward/driver
 
-ENV DOWNWARD_PLANNER_PATH=/workspace/downward/
+ENV DOWNWARD_PLANNER_PATH=/workspace/downward/ AI_ENABLED=true
 
 COPY --from=builder --chown=1001:0 /src/target/lib/* /deployments/lib/
 COPY --from=builder --chown=1001:0 /src/target/*-runner.jar /deployments/app.jar

@@ -33,4 +33,8 @@ class LocalizationRepository {
         return locations[user]
     }
 
+    fun getAllLocalizedUsers(): Map<String, Location>{
+        return locations.toMap()
+    }
+
 }
