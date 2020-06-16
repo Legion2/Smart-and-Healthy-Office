@@ -19,9 +19,7 @@ services:
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
   controller:
-    build:
-      context: controller
-      dockerfile: Dockerfile.jvm
+    build: controller
     environment:
       MQTT_HOST: broker
       MQTT_PORT: "1883"
