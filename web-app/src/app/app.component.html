@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="toolbar">
   <mat-toolbar-row>
     <nav mat-tab-nav-bar class="tabs" backgroundColor="primary">
+      <a mat-tab-link>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="goToHome()">home</mat-icon>
+      </a>
       <a mat-tab-link
          *ngFor="let link of navLinks"
          [routerLink]="link.link"

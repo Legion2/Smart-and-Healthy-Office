@@ -20,15 +20,27 @@ export class AppComponent implements OnInit {
     });
   }
 
+
   constructor(private router: Router,
-    private swPush: SwPush) {
-    this.navLinks = [
-      {
-        label: 'Room',
-        link: './room',
-        index: 0,
-      }
-    ];
+              private swPush: SwPush) {
+    this.createRooms();
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  createRooms(): void {
+    const max_room = 3;
+    for (let i = 0; i < max_room; i++) {
+      console.log(i);
+      const link  = {
+        label: 'Room ' + i.toString(),
+        link:  './room' + i.toString(),
+        index: i,
+      };
+      this.navLinks.push(link);
+    }
   }
 
   subscribeToNotifications(): void {

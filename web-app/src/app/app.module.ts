@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { RoomComponent } from './room/room.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
