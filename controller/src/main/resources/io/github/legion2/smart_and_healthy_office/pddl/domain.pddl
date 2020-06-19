@@ -29,4 +29,6 @@
                  (increase (total-cost) (stress_plus_changing_room ?r2)))
 )
 
+
+
 )
