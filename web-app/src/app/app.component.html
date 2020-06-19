@@ -11,6 +11,9 @@
          [active]="rla.isActive">
         {{link.label}}
       </a>
+      <a mat-tab-link class>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="logout()">exit_to_app</mat-icon>
+      </a>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
