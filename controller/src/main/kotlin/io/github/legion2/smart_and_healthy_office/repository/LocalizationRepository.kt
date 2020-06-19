@@ -33,6 +33,10 @@ class LocalizationRepository {
         return locations[user]
     }
 
+    fun setLocation(user: String, location: Location) {
+        locations[user] = location
+    }
+
     fun getAllLocalizedUsers(): Map<String, Location>{
         return locations.toMap()
     }

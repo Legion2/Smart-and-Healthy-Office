@@ -22,4 +22,12 @@ class LocalizationResource {
             null -> throw IllegalArgumentException("Unknown user: $user")
         }
     }
+
+    @POST
+    @Path("{user}")
+    fun setLocation(@PathParam("user") user: String, body: UserLocationBody) {
+        localizationRepository.setLocation(user, Location.Room(body.location))
+    }
 }
+
+class UserLocationBody(var location: String = "")
