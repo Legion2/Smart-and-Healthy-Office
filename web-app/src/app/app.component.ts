@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
 import { ApiService } from '../../generated/api/services/api.service';
 import { Room } from '../../generated/api/models/room';
+import { RoomComponent } from './room/room.component';
+import { DataService } from './shared/dataService.component';
 
 
 @Component({
@@ -15,11 +17,12 @@ export class AppComponent implements OnInit {
   rooms: Room[] = [];
   navLinks: any[] = [];
   activeLinkIndex = -1;
-  private _roomCount = 0 ;
+  loggedIn = true;
 
   ngOnInit(): void {
-    this.getRooms();
-    this.createRoomTabs();
+    this.getRooms().then(() => {
+      this.createTabs();
+    });
     this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(
         this.navLinks.find((tab) => tab.link === '.' + this.router.url)
@@ -28,29 +31,35 @@ export class AppComponent implements OnInit {
   }
 
 
+  logout(): void {
+    this.router.navigate(['/login']);
+  }
+
   constructor(
     private router: Router,
     private apiService: ApiService,
-    private swPush: SwPush,
+    private roomService: DataService,
+    private swPush: SwPush
   ) {
   }
 
-  goToHome(): void {
-    this.router.navigate(['/']);
+  getRooms() {
+    return new Promise((resolve, reject) =>
+      this.apiService.roomsGet().subscribe((data) => {
+        this.rooms = data;
+        this.roomService.updateRooms(data);
+        resolve();
+      }));
   }
 
-  logout(): void {
-    this.router.navigate(['login']);
-  }
-
-  createRoomTabs(): void {
-    for (let i = 0; i < this._roomCount; i++) {
+  createTabs() {
+    for (let i = 0; i < this.rooms.length; i++) {
       const link = {
-        label: 'Room ' + i.toString(),
-        link: './room' + i.toString(),
-        index: i,
+        link: this.rooms[i].name.toString().trim(),
+        label: this.rooms[i].name.toString().trim(),
       };
       this.navLinks.push(link);
+      this.router.config.push({ path: this.rooms[i].name.trim(), component: RoomComponent });
     }
   }
 
@@ -60,18 +69,5 @@ export class AppComponent implements OnInit {
     })
       .then(sub => null) //send sub to backend /api/subscriptions with the user
       .catch(err => console.error("Could not subscribe to notifications", err));
-  }
-
-  getRooms(): void {
-    this.apiService.roomsGet().subscribe((data) => {
-      this.rooms = data;
-      console.log(data);
-      this._roomCount = data.length;
-    });
-  }
-
-  get roomCount(): number {
-    return this._roomCount;
-
   }
 }

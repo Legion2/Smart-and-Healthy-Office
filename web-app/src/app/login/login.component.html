@@ -1,12 +1,14 @@
 <div class="signin">
   <mat-card>
     <mat-card-content>
-      <div>
+      <div class="labels">
         <mat-label>Welcome to the smart healthy office system</mat-label>
       </div>
-      <div>
+      <div class="labels">
         <mat-label>In which room are you currently?</mat-label>
-        <button mat-raised-button color="primary">btn</button>
+      </div>
+        <div *ngFor="let room of rooms" class="buttons">
+          <button mat-raised-button color="primary" >{{room.name}}</button>
       </div>
     </mat-card-content>
   </mat-card>
