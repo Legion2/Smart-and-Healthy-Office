@@ -19,6 +19,7 @@ class LocalizationResource {
         return when (val location = localizationRepository.getLocation(user)) {
             is Location.Room -> location.room
             Location.Unknown -> "Location.Unknown"
+            Location.Unmanaged -> "Location.Unmanaged"
             null -> throw IllegalArgumentException("Unknown user: $user")
         }
     }
@@ -26,7 +27,12 @@ class LocalizationResource {
     @POST
     @Path("{user}")
     fun setLocation(@PathParam("user") user: String, body: UserLocationBody) {
-        localizationRepository.setLocation(user, Location.Room(body.location))
+        val location = when(body.location) {
+            "Location.Unknown" -> Location.Unknown
+            "Location.Unmanaged" -> Location.Unmanaged
+            else -> Location.Room(body.location)
+        }
+        localizationRepository.setLocation(user, location)
     }
 }
 

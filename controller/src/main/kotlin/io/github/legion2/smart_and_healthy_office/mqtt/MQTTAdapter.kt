@@ -1,7 +1,9 @@
 package io.github.legion2.smart_and_healthy_office.mqtt
 
 import com.beust.klaxon.Klaxon
+import io.github.legion2.smart_and_healthy_office.model.Location
 import io.github.legion2.smart_and_healthy_office.mqtt.message.*
+import io.github.legion2.smart_and_healthy_office.repository.LocalizationRepository
 import io.github.legion2.smart_and_healthy_office.repository.RoomRepository
 import org.eclipse.microprofile.reactive.messaging.Incoming
 import org.slf4j.Logger
@@ -16,6 +18,8 @@ class MQTTAdapter {
 
     @Inject
     lateinit var roomRepository: RoomRepository
+    @Inject
+    lateinit var localizationRepository: LocalizationRepository
 
     @Incoming("temperature")
     fun processTemperature(payload: ByteArray) {
@@ -37,7 +41,7 @@ class MQTTAdapter {
                 it.copy(humidity = message.humidity.toFloat())
             }
         } catch (e: RuntimeException) {
-            log.error("Runtime Exception while processing temperature", e)
+            log.error("Runtime Exception while processing humidity", e)
         }
     }
 
@@ -49,7 +53,7 @@ class MQTTAdapter {
                 it.copy(loudness = message.loudness.toFloat())
             }
         } catch (e: RuntimeException) {
-            log.error("Runtime Exception while processing temperature", e)
+            log.error("Runtime Exception while processing loudness", e)
         }
     }
 
@@ -61,7 +65,29 @@ class MQTTAdapter {
                 it.copy(brightness = message.brightness.toFloat())
             }
         } catch (e: RuntimeException) {
-            log.error("Runtime Exception while processing temperature", e)
+            log.error("Runtime Exception while processing brightness", e)
+        }
+    }
+
+    @Incoming("presence")
+    fun processPresence(payload: ByteArray) {
+        try {
+            val message = PresenceMessage.from(parseMessage(payload))
+            roomRepository.update(message.room) {
+                it.copy(presence = message.presence)
+            }
+        } catch (e: RuntimeException) {
+            log.error("Runtime Exception while processing presence", e)
+        }
+    }
+
+    @Incoming("location")
+    fun processLocation(payload: ByteArray) {
+        try {
+            val message = LocationMessage.from(parseMessage(payload))
+            localizationRepository.setMacLocation(message.mac, Location.Room(message.room))
+        } catch (e: RuntimeException) {
+            log.error("Runtime Exception while processing location", e)
         }
     }
 

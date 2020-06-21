@@ -4,7 +4,7 @@ services:
   proxy:
     build: proxy
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       HOST_NAME:
     command: /bin/sh -c "envsubst < /etc/nginx/conf.d/nginx.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
@@ -27,26 +27,47 @@ services:
     volumes:
       - ./rooms.json:/config/rooms.json:ro
       - ./localization.json:/config/localization.json:ro
+    depends_on:
+      - broker
   sensor-kitchen:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: kitchen
+    depends_on:
+      - broker
   sensor-office:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: office
+    depends_on:
+      - broker
   sensor-meeting-room:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: meeting-room
+    depends_on:
+      - broker
   sensor-shared-room:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: shared-room
+    depends_on:
+      - broker
+  presence-simulation:
+    build: presence-simulation
+    environment:
+      MQTT_HOST: broker
+      ROOMS_CONFIG_FILE: /config/rooms.json
+      LOCALIZATION_CONFIG_FILE: /config/localization.json
+    volumes:
+      - ./rooms.json:/config/rooms.json:ro
+      - ./localization.json:/config/localization.json:ro
+    depends_on:
+      - broker
   web-app:
     build: web-app
 

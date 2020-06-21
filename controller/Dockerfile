@@ -20,8 +20,10 @@ RUN ./build.py
 RUN strip --strip-all builds/release/bin/downward
 
 FROM maven:3.6.3-jdk-11 AS builder
-COPY . /src
 WORKDIR /src
+COPY pom.xml /src
+RUN mvn dependency:go-offline
+COPY . /src
 RUN mvn package -Dmaven.test.skip=true
 
 FROM ubuntu:18.04

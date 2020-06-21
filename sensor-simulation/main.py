@@ -58,9 +58,9 @@ def get_timestamp():
 
 
 thermometer = GaussDistribution(23, 16, 28, 0.1)
-humiditySensor = GaussDistribution(50, 35, 70, 0.1)
+humiditySensor = GaussDistribution(0.5, 0.35, 0.70, 0.01)
 brightnessSensor = GaussDistribution(350, 250, 750, 1)
-loudnessSensor = GaussDistribution(60, 55, 75, 0.01)
+loudnessSensor = GaussDistribution(60, 65, 75, 0.01)
 
 def simulate_temperature():
     temperature = thermometer.read_value()
