@@ -4,7 +4,7 @@ import { SwPush } from '@angular/service-worker';
 import { ApiService } from '../../generated/api/services/api.service';
 import { Room } from '../../generated/api/models/room';
 import { RoomComponent } from './room/room.component';
-import { DataService } from './shared/dataService.component';
+import { DataService } from './shared/data.service';
 
 
 @Component({
@@ -17,9 +17,12 @@ export class AppComponent implements OnInit {
   rooms: Room[] = [];
   navLinks: any[] = [];
   activeLinkIndex = -1;
-  loggedIn = true;
+  loggedIn: boolean;
 
   ngOnInit(): void {
+    this.dataService.isLoggedIn.subscribe(isLoggedIn => {
+      this.loggedIn = isLoggedIn;
+    });
     this.getRooms().then(() => {
       this.createTabs();
     });
@@ -38,7 +41,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
-    private roomService: DataService,
+    private dataService: DataService,
     private swPush: SwPush
   ) {
   }
@@ -47,7 +50,7 @@ export class AppComponent implements OnInit {
     return new Promise((resolve, reject) =>
       this.apiService.roomsGet().subscribe((data) => {
         this.rooms = data;
-        this.roomService.updateRooms(data);
+        this.dataService.updateRooms(data);
         resolve();
       }));
   }

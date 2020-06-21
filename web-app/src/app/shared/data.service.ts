@@ -5,7 +5,10 @@ import { Room } from '../../../generated/api/models/room';
 @Injectable()
 export class DataService {
   private rooms = new BehaviorSubject<Array<Room>>([]);
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
   currentRooms = this.rooms.asObservable();
+  isLoggedIn = this.loggedIn.asObservable();
 
   constructor() { }
 
@@ -13,4 +16,11 @@ export class DataService {
     this.rooms.next(rooms);
   }
 
+  login() {
+    this.loggedIn.next(true);
+  }
+
+  logout() {
+    this.loggedIn.next(false);
+  }
 }
