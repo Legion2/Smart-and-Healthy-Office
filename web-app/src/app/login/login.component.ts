@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from '../../../generated/api/models/room';
 import { DataService } from '../shared/data.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +11,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  rooms: Room[] = [];
+  rooms: Observable<Array<Room>>;
+
   constructor(private dataService: DataService,
-              private router: Router, ) {
+              private router: Router) {
+   this.rooms = dataService.getRooms();
   }
 
   ngOnInit(): void {
-    this.dataService.currentRooms.subscribe(rooms => {
-      this.rooms = rooms;
-    });
+
     this.dataService.isLoggedIn.subscribe(loggedIn => {
       if (loggedIn === false) {
-        console.log('login');
         this.router.navigate(['/login']);
       }
     });
   }
+
 }

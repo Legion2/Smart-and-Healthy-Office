@@ -7,13 +7,17 @@ export class DataService {
   private rooms = new BehaviorSubject<Array<Room>>([]);
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  currentRooms = this.rooms.asObservable();
   isLoggedIn = this.loggedIn.asObservable();
+  currentRooms = this.rooms.asObservable();
 
   constructor() { }
 
   updateRooms(rooms: Room[]) {
     this.rooms.next(rooms);
+  }
+
+  getRooms(){
+    return this.currentRooms;
   }
 
   login() {
@@ -23,4 +27,5 @@ export class DataService {
   logout() {
     this.loggedIn.next(false);
   }
+
 }

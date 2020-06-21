@@ -7,7 +7,7 @@
       <div class="labels">
         <mat-label>In which room are you currently?</mat-label>
       </div>
-        <div *ngFor="let room of rooms" class="buttons">
+        <div *ngFor="let room of rooms | async" class="buttons">
           <button mat-raised-button color="primary" >{{room.name}}</button>
       </div>
     </mat-card-content>

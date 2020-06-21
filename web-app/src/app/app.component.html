@@ -1,20 +1,2 @@
-<mat-toolbar color="primary" class="toolbar" *ngIf="loggedIn">
-  <div>
-  <nav mat-tab-nav-bar class="tabs" backgroundColor="primary">
-    <a mat-tab-link
-       *ngFor="let link of navLinks"
-       [routerLink]="link.link"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </nav>
-  </div>
-  <div class="example-button-container">
-    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
 <router-outlet>
 </router-outlet>
