@@ -37,7 +37,12 @@ class LocalizationRepository {
         locations[user] = location
     }
 
-    fun getAllLocalizedUsers(): Map<String, Location>{
+    fun setMacLocation(mac: String, location: Location) {
+        val user = users.values.first { user -> user.mac == mac }
+        locations[user.id] = location
+    }
+
+    fun getAllLocalizedUsers(): Map<String, Location> {
         return locations.toMap()
     }
 
