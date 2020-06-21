@@ -2,6 +2,7 @@ package io.github.legion2.smart_and_healthy_office.api
 
 import io.github.legion2.smart_and_healthy_office.notification.Subscription
 import io.github.legion2.smart_and_healthy_office.notification.WebPushService
+import org.eclipse.microprofile.openapi.annotations.media.Schema
 import java.util.*
 import javax.inject.Inject
 import javax.ws.rs.*
@@ -46,24 +47,35 @@ class SubscriptionResource {
     }
 }
 
+@Schema(name = "Subscription")
 class SubscriptionBody {
+    @Schema(required = true)
     lateinit var user: String
+
+    @Schema(required = true)
     lateinit var subscription: ClientSubscription
 
     class ClientSubscription {
+        @Schema(required = true)
         lateinit var endpoint: String
+
+        @Schema(required = true)
         lateinit var expirationTime: String
+
+        @Schema(required = true)
         lateinit var keys: Keys
 
         class Keys {
             /**
              * Base64 URL encoded String
              */
+            @Schema(required = true)
             lateinit var p256dh: String
 
             /**
              * Base64 URL encoded String
              */
+            @Schema(required = true)
             lateinit var auth: String
         }
     }

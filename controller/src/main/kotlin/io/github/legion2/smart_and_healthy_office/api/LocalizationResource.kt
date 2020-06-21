@@ -2,6 +2,7 @@ package io.github.legion2.smart_and_healthy_office.api
 
 import io.github.legion2.smart_and_healthy_office.model.Location
 import io.github.legion2.smart_and_healthy_office.repository.LocalizationRepository
+import org.eclipse.microprofile.openapi.annotations.media.Schema
 import javax.inject.Inject
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
@@ -27,7 +28,7 @@ class LocalizationResource {
     @POST
     @Path("{user}")
     fun setLocation(@PathParam("user") user: String, body: UserLocationBody) {
-        val location = when(body.location) {
+        val location = when (body.location) {
             "Location.Unknown" -> Location.Unknown
             "Location.Unmanaged" -> Location.Unmanaged
             else -> Location.Room(body.location)
@@ -36,4 +37,8 @@ class LocalizationResource {
     }
 }
 
-class UserLocationBody(var location: String = "")
+@Schema(name = "UserLocation")
+class UserLocationBody {
+    @Schema(required = true)
+    lateinit var location: String
+}
