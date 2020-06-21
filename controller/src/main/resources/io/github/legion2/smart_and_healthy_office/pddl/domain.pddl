@@ -28,7 +28,4 @@
                  (not (is_currently_at ?u ?r1))
                  (increase (total-cost) (stress_plus_changing_room ?r2)))
 )
-
-
-
 )

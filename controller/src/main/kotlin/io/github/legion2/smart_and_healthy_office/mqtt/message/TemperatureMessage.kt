@@ -4,8 +4,8 @@ data class TemperatureMessage(val room: String, val temperature: Double, val tim
     companion object {
         fun from(message: Message): TemperatureMessage {
             return TemperatureMessage(message.tags.getOrElse("room") { throw IllegalArgumentException("Invalid message, missing tag room: $message") }
-                    , (message.fields.getOrElse("temperature") { throw IllegalArgumentException("Invalid message, missing field temperature: $message") } as? Double
-                    ?: throw IllegalArgumentException("Invalid message, temperature field must be of type double: $message")), message.timestamp)
+                    , ((message.fields.getOrElse("temperature") { throw IllegalArgumentException("Invalid message, missing field temperature: $message") } as? Number
+                    ?: throw IllegalArgumentException("Invalid message, temperature field must be of type double: $message"))).toDouble(), message.timestamp)
         }
     }
 }
