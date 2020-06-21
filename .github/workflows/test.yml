@@ -1,0 +1,33 @@
+name: CI
+on: [ push,pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: controller
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '11'
+    - name: Test controller
+      run: mvn test
+  web-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web-app
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Install packages
+      run: npm ci
+    - name: Install Angular cli
+      run: npm install -g @angular/cli
+    - name: Test web-app
+      run: ng build
+
