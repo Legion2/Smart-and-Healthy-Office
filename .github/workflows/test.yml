@@ -26,6 +26,8 @@ jobs:
         node-version: '12'
     - name: Install packages
       run: npm ci
+    - name: Install Angular cli
+      run: npm install -g @angular/cli
     - name: Test web-app
       run: ng build
 
