@@ -27,26 +27,36 @@ services:
     volumes:
       - ./rooms.json:/config/rooms.json:ro
       - ./localization.json:/config/localization.json:ro
+    depends_on:
+      - broker
   sensor-kitchen:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: kitchen
+    depends_on:
+      - broker
   sensor-office:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: office
+    depends_on:
+      - broker
   sensor-meeting-room:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: meeting-room
+    depends_on:
+      - broker
   sensor-shared-room:
     build: sensor-simulation
     environment:
       MQTT_HOST: broker
       ROOM_ID: shared-room
+    depends_on:
+      - broker
   presence-simulation:
     build: presence-simulation
     environment:
@@ -56,6 +66,8 @@ services:
     volumes:
       - ./rooms.json:/config/rooms.json:ro
       - ./localization.json:/config/localization.json:ro
+    depends_on:
+      - broker
   web-app:
     build: web-app
 
