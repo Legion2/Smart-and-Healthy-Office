@@ -9,4 +9,3 @@ RUN ng build --prod
 # Deploy Angular App
 FROM nginx:1.15.12-alpine
 COPY --from=builder /usr/src/app/dist/web-app /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
