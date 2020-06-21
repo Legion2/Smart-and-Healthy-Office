@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    private swPush: SwPush) {
     this.navLinks = [
       {
         label: 'Room',
@@ -27,5 +29,13 @@ export class AppComponent implements OnInit {
         index: 0,
       }
     ];
+  }
+
+  subscribeToNotifications(): void {
+    this.swPush.requestSubscription({
+      serverPublicKey: ""// load VAPID key from server /api/subscriptions/key
+    })
+      .then(sub => null)//send sub to backend /api/subscriptions with the user
+      .catch(err => console.error("Could not subscribe to notifications", err));
   }
 }
