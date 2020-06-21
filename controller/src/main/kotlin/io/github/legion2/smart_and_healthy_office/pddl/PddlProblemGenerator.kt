@@ -76,7 +76,7 @@ class PddlProblemGenerator {
         }
 
     internal fun preprocess(context: List<RoomModel>, users: Map<String, Location>): ContextModel {
-        return ContextModel(context.map { Room(it.id.roomId, it.stress) }, users.filterValues { it !is Location.Unknown }
+        return ContextModel(context.map { Room(it.id.roomId, it.stress) }, users.filterValues { it is Location.Room }
                 .map { (user, location) -> User(user.userId, (location as Location.Room).room.roomId) })
     }
 
