@@ -1,5 +1,4 @@
-<div class="signin">
-  <mat-card>
+ <mat-card>
     <mat-card-content>
       <div class="labels">
         <mat-label>Welcome to the smart healthy office system</mat-label>
@@ -8,8 +7,8 @@
         <mat-label>In which room are you currently?</mat-label>
       </div>
         <div *ngFor="let room of rooms | async" class="buttons">
-          <button mat-raised-button color="primary" >{{room.name}}</button>
+          <button mat-raised-button color="primary" (click)="onLogin()" >{{room.name}}</button>
       </div>
     </mat-card-content>
   </mat-card>
-</div>
+

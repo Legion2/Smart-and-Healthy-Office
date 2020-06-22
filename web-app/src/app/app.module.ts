@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { DataService } from './shared/data.service';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './auth/auth.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     RoomComponent,
     LoginComponent,
     HomeComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     MatButtonModule
   ],
-  providers: [DataService, AuthGuard],
+  providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,7 +9,6 @@ import { ApiService } from '../../generated/api/services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   constructor(private dataService: DataService,
               private router: Router,
               private apiService: ApiService) {
