@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth/auth.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     MatToolbarModule,
@@ -44,6 +46,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MatButtonModule
   ],
   providers: [DataService, AuthGuard, AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

@@ -44,11 +44,11 @@ export class NavBarComponent implements OnInit {
   createTabs() {
     for (let i = 0; i < this.rooms.length; i++) {
       const link = {
-        link: this.rooms[i].name.trim().replace(/\s/g, '-'),
+        link: this.rooms[i].id.trim(),
         label: this.rooms[i].name,
       };
       this.navLinks.push(link);
-      this.router.config.push({ path: this.rooms[i].name.trim().replace(/\s/g, '-'), component: RoomComponent });
+      this.router.config.push({ path: this.rooms[i].id.trim(), component: RoomComponent });
     }
   }
 
