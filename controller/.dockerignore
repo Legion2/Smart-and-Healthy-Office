@@ -1,3 +1,5 @@
 *
 !src/
 !pom.xml
+!localization.json
+!rooms.json

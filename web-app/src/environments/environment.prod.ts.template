@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BACKEND_URL: 'http://localhost/api',
+  BACKEND_URL: '${API_HOST_URL}',
 };
