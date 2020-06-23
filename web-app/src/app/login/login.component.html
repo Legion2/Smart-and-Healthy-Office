@@ -1,14 +1,21 @@
- <mat-card>
-    <mat-card-content>
-      <div class="labels">
-        <mat-label>Welcome to the smart healthy office system</mat-label>
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <mdb-card class="w-25">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/img%20%2853%29.jpg"
+                      alt="Card image cap"></mdb-card-img>
       </div>
-      <div class="labels">
-        <mat-label>In which room are you currently?</mat-label>
-      </div>
-        <div *ngFor="let room of rooms | async" class="buttons">
-          <button mat-raised-button color="primary" (click)="onLogin()" >{{room.name}}</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
+      <mdb-card-body>
+        <mdb-card-title class="row h-100 justify-content-center align-items-center">
+          <h4>Login</h4>
+          <mat-label>In which room are you currently?</mat-label>
+        </mdb-card-title>
+        <div class="btn-toolbar mt-0">
+          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin()">{{room.name}}</button>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>
+
 

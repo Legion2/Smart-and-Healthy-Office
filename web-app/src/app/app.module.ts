@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth/auth.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     HttpClientModule,
     MatCardModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressBarModule
   ],
   providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent],
