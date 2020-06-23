@@ -19,14 +19,4 @@ internal class PddlProblemGeneratorTest {
         println(domain)
         println(plan)
     }
-
-    @Test
-    fun testRangeToStress() {
-        Assertions.assertEquals(10, generator.rangeToStress(10f, 30f, 12f))
-        Assertions.assertEquals(0, generator.rangeToStress(10f, 30f, 10f))
-        Assertions.assertEquals(100, generator.rangeToStress(10f, 30f, 30f))
-        Assertions.assertEquals(50, generator.rangeToStress(10f, 30f, 20f))
-        Assertions.assertEquals(66, generator.rangeToStress(-10f, 5f, 0f))
-        Assertions.assertEquals(20, generator.rangeToStress(10f, 0f, 8f))
-    }
 }

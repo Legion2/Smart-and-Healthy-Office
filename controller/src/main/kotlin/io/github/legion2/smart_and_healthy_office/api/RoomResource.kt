@@ -35,10 +35,11 @@ data class Room(@field:Schema(required = true) val id: String,
                 @field:Schema(required = true) val humidity: Float,
                 @field:Schema(required = true) val brightness: Float,
                 @field:Schema(required = true) val loudness: Float,
-                @field:Schema(required = true) val presence: Int) {
+                @field:Schema(required = true) val presence: Int,
+                @field:Schema(required = true) val stress: Int) {
     companion object {
         fun from(model: RoomModel): Room {
-            return model.run { Room(id, name, size, temperature, humidity, brightness, loudness, presence) }
+            return model.run { Room(id, name, size, temperature, humidity, brightness, loudness, presence, stress) }
         }
     }
 }
