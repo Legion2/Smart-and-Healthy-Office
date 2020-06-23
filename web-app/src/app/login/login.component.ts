@@ -3,6 +3,8 @@ import { Room } from '../../../generated/api/models/room';
 import { DataService } from '../shared/data.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { ApiService } from '../../../generated/api/services/api.service';
+import { UserLocation } from '../../../generated/api/models/user-location';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +14,15 @@ import { AuthService } from '../auth/auth.service';
 export class LoginComponent implements OnInit {
 
   rooms: Observable<Array<Room>>;
+  userLocation: UserLocation = {
+    location: ''
+  };
+
+  username: string;
 
   constructor(private dataService: DataService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private apiService: ApiService) {
    this.rooms = dataService.getRooms();
   }
 
@@ -22,7 +30,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onLogin() {
+  onLogin(room: string) {
+    this.userLocation.location = room;
     this.authService.login();
+    this.apiService.locationUserPost(this.username, this.userLocation);
   }
 }

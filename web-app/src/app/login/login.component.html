@@ -8,10 +8,15 @@
       <mdb-card-body>
         <mdb-card-title class="row h-100 justify-content-center align-items-center">
           <h4>Login</h4>
-          <mat-label>In which room are you currently?</mat-label>
         </mdb-card-title>
+        <div class="md-form">
+          <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon>
+          <input mdbInput [(ngModel)]="username" type="text" id="form2" class="form-control">
+          <label for="form2">Username</label>
+        </div>
+        <label>In which room are you currently?</label>
         <div class="btn-toolbar mt-0">
-          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin()">{{room.name}}</button>
+          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin(room.id)">{{room.name}}</button>
         </div>
       </mdb-card-body>
     </mdb-card>

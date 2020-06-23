@@ -22,6 +22,7 @@ import { AuthService } from './auth/auth.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,22 +32,23 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     HomeComponent,
     NavBarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot(),
-    ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    MatToolbarModule,
-    MatTabsModule,
-    MatIconModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MDBBootstrapModule.forRoot(),
+        ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        MatToolbarModule,
+        MatTabsModule,
+        MatIconModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        FormsModule
+    ],
   providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
