@@ -60,9 +60,6 @@ class SubscriptionBody {
         lateinit var endpoint: String
 
         @Schema(required = true)
-        lateinit var expirationTime: String
-
-        @Schema(required = true)
         lateinit var keys: Keys
 
         class Keys {
