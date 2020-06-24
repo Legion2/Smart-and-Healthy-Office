@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
   username: string;
 
   constructor(private dataService: DataService,
-              private authService: AuthService,
-              private apiService: ApiService) {
-   this.rooms = dataService.getRooms();
+    private authService: AuthService,
+    private apiService: ApiService) {
+    this.rooms = dataService.getRooms();
   }
 
   ngOnInit(): void {
@@ -33,6 +33,6 @@ export class LoginComponent implements OnInit {
   onLogin(room: string) {
     this.userLocation.location = room;
     this.authService.login();
-    this.apiService.locationUserPost(this.username, this.userLocation);
+    this.apiService.locationUserPost({ user: this.username, body: this.userLocation });
   }
 }
