@@ -33,6 +33,6 @@ export class LoginComponent implements OnInit {
   onLogin(room: string) {
     this.userLocation.location = room;
     this.authService.login();
-    this.apiService.locationUserPost(this.username, this.userLocation);
+    this.apiService.locationUserPost({user: this.username, body: {location: this.userLocation.location}});
   }
 }
