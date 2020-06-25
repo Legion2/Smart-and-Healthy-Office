@@ -54,10 +54,11 @@ COPY --from=pddl-builder /workspace/downward/fast-downward.py /workspace/downwar
 COPY --from=pddl-builder /workspace/downward/builds/release/bin/ /workspace/downward/builds/release/bin/
 COPY --from=pddl-builder /workspace/downward/driver /workspace/downward/driver
 
-ENV DOWNWARD_PLANNER_PATH=/workspace/downward/ AI_ENABLED=true
+ENV DOWNWARD_PLANNER_PATH=/workspace/downward/ AI_ENABLED=true CONFIG_PATH=/config
 
 COPY --from=builder --chown=1001:0 /src/target/lib/* /deployments/lib/
 COPY --from=builder --chown=1001:0 /src/target/*-runner.jar /deployments/app.jar
+COPY --from=builder --chown=1001:0 /src/rooms.json /src/localization.json /config/ 
 
 EXPOSE 8080
 USER 1001

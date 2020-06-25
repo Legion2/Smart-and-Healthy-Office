@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from './shared/data.service';
 import { Router } from '@angular/router';
-import { SwPush } from '@angular/service-worker';
+import { ApiService } from '../../generated/api/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,34 +9,18 @@ import { SwPush } from '@angular/service-worker';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  navLinks: any[] = [];
-  activeLinkIndex = -1;
+  constructor(private dataService: DataService,
+              private router: Router,
+              private apiService: ApiService) {
+  }
 
   ngOnInit(): void {
-    this.router.events.subscribe((res) => {
-      this.activeLinkIndex = this.navLinks.indexOf(
-        this.navLinks.find((tab) => tab.link === '.' + this.router.url)
-      );
+    this.getRooms();
+  }
+
+  getRooms() {
+    this.apiService.roomsGet().subscribe((data) => {
+      this.dataService.updateRooms(data);
     });
-  }
-
-  constructor(private router: Router,
-    private swPush: SwPush) {
-    this.navLinks = [
-      {
-        label: 'Room',
-        link: './room',
-        index: 0,
-      }
-    ];
-  }
-
-  subscribeToNotifications(): void {
-    this.swPush.requestSubscription({
-      serverPublicKey: ""// load VAPID key from server /api/subscriptions/key
-    })
-      .then(sub => null)//send sub to backend /api/subscriptions with the user
-      .catch(err => console.error("Could not subscribe to notifications", err));
   }
 }

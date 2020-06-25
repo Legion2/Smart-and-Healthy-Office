@@ -23,10 +23,6 @@ services:
     environment:
       MQTT_HOST: broker
       MQTT_PORT: "1883"
-      CONFIG_PATH: /config
-    volumes:
-      - ./rooms.json:/config/rooms.json:ro
-      - ./localization.json:/config/localization.json:ro
     depends_on:
       - broker
   sensor-kitchen:
@@ -61,16 +57,13 @@ services:
     build: presence-simulation
     environment:
       MQTT_HOST: broker
-      ROOMS_CONFIG_FILE: /config/rooms.json
-      LOCALIZATION_CONFIG_FILE: /config/localization.json
-    volumes:
-      - ./rooms.json:/config/rooms.json:ro
-      - ./localization.json:/config/localization.json:ro
     depends_on:
       - broker
   web-app:
-    build: web-app
-
+    build:
+      context: web-app
+      args:
+        API_HOST_URL: http://${HOST_NAME}/api
 
 volumes:
   mosquitto-data:

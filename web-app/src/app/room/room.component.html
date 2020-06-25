@@ -1,1 +1,107 @@
-<p>raum works!</p>
+<section class="mt-lg-5">
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-r">
+      <mdb-card cascade="true" class="cascading-admin-card">
+        <div class="admin-up">
+          <mdb-icon far icon="tint" class="primary-color"></mdb-icon>
+          <div class="data">
+            <p>Humidity</p>
+            <h4><strong>{{(room | async).humidity}}</strong></h4>
+          </div>
+        </div>
+        <mdb-card-body>
+          <div class="progress">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-r">
+      <mdb-card cascade="true" class="cascading-admin-card">
+        <div class="admin-up">
+          <mdb-icon fas icon="thermometer-quarter" class="warning-color"></mdb-icon>
+          <div class="data">
+            <p>Temperature</p>
+            <h4><strong>{{(room | async).temperature}}</strong></h4>
+          </div>
+        </div>
+        <mdb-card-body>
+          <div class="progress">
+            <div class="progress-bar bg grey darken-2" role="progressbar" style="width: 25%"
+                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-r">
+      <mdb-card cascade="true" class="cascading-admin-card">
+        <div class="admin-up">
+          <mdb-icon fas icon="volume-up" class="light-blue lighten-1"></mdb-icon>
+          <div class="data">
+            <p>Loudness</p>
+            <h4><strong>{{(room | async).loudness}}</strong></h4>
+          </div>
+        </div>
+        <mdb-card-body>
+          <div class="progress">
+            <div class="progress-bar grey darken-2" role="progressbar" style="width: 75%" aria-valuenow="75"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-r">
+      <mdb-card cascade="true" class="cascading-admin-card">
+        <div class="admin-up">
+          <mdb-icon fas icon="sun" class="red accent-2"></mdb-icon>
+          <div class="data">
+            <p>Brightness</p>
+            <h4><strong>{{(room | async).brightness}}</strong></h4>
+          </div>
+        </div>
+        <mdb-card-body>
+          <div class="progress">
+            <div class="progress-bar grey darken-2" role="progressbar" style="width: 25%" aria-valuenow="25"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</section>
+
+<div class="row wow fadeIn mt-5">
+  <div class="col-md-3 mb-4">
+    <mdb-card class="mb-4">
+      <div class="card-header text-center">
+        Trends
+      </div>
+      <mdb-card-body>
+        <div class="list-group list-group-flush">
+          <a class="list-group-item list-group-item-action waves-effect">Humidity
+            <mdb-badge success="true" pill="true" class="pull-right">22%
+              <mdb-icon fas icon="arrow-up" class="ml-1"></mdb-icon>
+            </mdb-badge>
+          </a>
+          <a class="list-group-item list-group-item-action waves-effect">Loudness
+            <mdb-badge danger="true" pill="true" class="pull-right">5%
+              <mdb-icon fas icon="arrow-down" class="ml-1"></mdb-icon>
+            </mdb-badge>
+          </a>
+          <a class="list-group-item list-group-item-action waves-effect">Temperature
+            <mdb-badge success="true" pill="true" class="pull-right">22%
+              <mdb-icon fas icon="arrow-up" class="ml-1"></mdb-icon>
+            </mdb-badge>
+          </a>
+          <a class="list-group-item list-group-item-action waves-effect">Brightness
+            <mdb-badge danger="true" pill="true" class="pull-right">5%
+              <mdb-icon fas icon="arrow-down" class="ml-1"></mdb-icon>
+            </mdb-badge>
+          </a>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>
+

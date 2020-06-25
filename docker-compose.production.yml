@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  proxy:
+    build: proxy-production
+    volumes:
+      - certificates:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      HOST_NAME:
+      SSL_CERTIFICATE_NAME:
+    command: /bin/sh -c "envsubst < /etc/nginx/conf.d/nginx.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    depends_on:
+      - controller
+      - web-app
+  broker:
+    build: broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+  controller:
+    build: controller
+    environment:
+      MQTT_HOST: broker
+      MQTT_PORT: "1883"
+    depends_on:
+      - broker
+  sensor-kitchen:
+    build: sensor-simulation
+    environment:
+      MQTT_HOST: broker
+      ROOM_ID: kitchen
+    depends_on:
+      - broker
+  sensor-office:
+    build: sensor-simulation
+    environment:
+      MQTT_HOST: broker
+      ROOM_ID: office
+    depends_on:
+      - broker
+  sensor-meeting-room:
+    build: sensor-simulation
+    environment:
+      MQTT_HOST: broker
+      ROOM_ID: meeting-room
+    depends_on:
+      - broker
+  sensor-shared-room:
+    build: sensor-simulation
+    environment:
+      MQTT_HOST: broker
+      ROOM_ID: shared-room
+    depends_on:
+      - broker
+  presence-simulation:
+    build: presence-simulation
+    environment:
+      MQTT_HOST: broker
+    depends_on:
+      - broker
+  web-app:
+    build:
+      context: web-app
+      args:
+        API_HOST_URL: https://${HOST_NAME}/api
+
+
+volumes:
+  mosquitto-data:
+  mosquitto-log:
+  certificates:
