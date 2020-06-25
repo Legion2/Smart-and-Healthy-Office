@@ -14,10 +14,6 @@ export class DataService {
     this.rooms.next(rooms);
   }
 
-  getCurrentRooms() {
-    return this.rooms.value;
-  }
-
   private getRooms() {
     this.apiService.roomsGet().subscribe((data) => {
       this.rooms.next(data);

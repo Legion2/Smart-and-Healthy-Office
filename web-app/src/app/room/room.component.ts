@@ -21,5 +21,4 @@ export class RoomComponent implements OnInit {
       this.room.next(data.filter( room => room.id === this.route.url.replace('/', ''))[0]);
     });
   }
-
 }

@@ -5,7 +5,6 @@ import { RoomComponent } from '../room/room.component';
 import { Room } from '../../../generated/api/models/room';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../generated/api/services/api.service';
-import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -20,16 +19,14 @@ export class NavBarComponent implements OnInit {
   activeLinkIndex = -1;
 
   constructor(private authService: AuthService,
-              private router: Router,
               private apiService: ApiService,
-              private dataService: DataService) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
-    this.dataService.currentRooms.subscribe((rooms) => {
-      this.rooms = rooms;
-      this.createTabs();
-    });
+    // just a workaround
+    this.createTabs();
     this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(
         this.navLinks.find((tab) => tab.link === '.' + this.router.url)
@@ -42,14 +39,30 @@ export class NavBarComponent implements OnInit {
   }
 
   createTabs() {
-    for (let i = 0; i < this.rooms.length; i++) {
-      const link = {
-        link: this.rooms[i].id.trim(),
-        label: this.rooms[i].name,
-      };
-      this.navLinks.push(link);
-      this.router.config.push({ path: this.rooms[i].id.trim(), component: RoomComponent });
-    }
-  }
 
+    const meeting = {
+      link: 'meeting-room',
+      label: 'Meeting Room',
+    };
+    const office = {
+      link: 'office',
+      label: 'Office Room',
+    };
+    const kitchen = {
+      link: 'kitchen',
+      label: 'Kitchen',
+    };
+    const shared = {
+      link: 'shared-room',
+      label: 'Shared Room',
+    };
+    this.navLinks.push(meeting);
+    this.navLinks.push(office);
+    this.navLinks.push(kitchen);
+    this.navLinks.push(shared);
+    this.router.config.push({ path: meeting.link, component: RoomComponent });
+    this.router.config.push({ path: office.link, component: RoomComponent });
+    this.router.config.push({ path: kitchen.link, component: RoomComponent });
+    this.router.config.push({ path: shared.link, component: RoomComponent });
+  }
 }
