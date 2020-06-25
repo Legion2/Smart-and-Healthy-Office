@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Room } from '../../../generated/api/models/room';
 import { DataService } from '../shared/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -11,16 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RoomComponent implements OnInit {
 
-  room: Room;
+  room = new Subject<Room>();
   constructor(private dataService: DataService,
-              private activeRoute: ActivatedRoute,
               private route: Router) {
   }
 
   ngOnInit(): void {
-    console.log(this.route.url.replace('/', ''));
-    this.dataService.currentRooms.subscribe((data) => {
-      this.room = data.filter( room => room.id === this.route.url.replace('/', ''))[0];
+    this.dataService.rooms.subscribe((data) => {
+      this.room.next(data.filter( room => room.id === this.route.url.replace('/', ''))[0]);
     });
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from '../../../generated/api/models/room';
 import { DataService } from '../shared/data.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../../../generated/api/services/api.service';
 import { UserLocation } from '../../../generated/api/models/user-location';
@@ -13,7 +13,7 @@ import { UserLocation } from '../../../generated/api/models/user-location';
 })
 export class LoginComponent implements OnInit {
 
-  rooms: Observable<Array<Room>>;
+  rooms: Subject<Array<Room>>;
   userLocation: UserLocation = {
     location: ''
   };
@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
   constructor(private dataService: DataService,
               private authService: AuthService,
               private apiService: ApiService) {
-   this.rooms = dataService.getRooms();
+    this.dataService.rooms.subscribe((data) => {
+      this.rooms.next(data);
+    });
   }
 
   ngOnInit(): void {

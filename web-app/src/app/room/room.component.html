@@ -6,7 +6,7 @@
           <mdb-icon far icon="tint" class="primary-color"></mdb-icon>
           <div class="data">
             <p>Humidity</p>
-            <h4><strong>{{room.humidity}}</strong></h4>
+            <h4><strong>{{(room | async).humidity}}</strong></h4>
           </div>
         </div>
         <mdb-card-body>
@@ -23,7 +23,7 @@
           <mdb-icon fas icon="thermometer-quarter" class="warning-color"></mdb-icon>
           <div class="data">
             <p>Temperature</p>
-            <h4><strong>{{room.temperature}}</strong></h4>
+            <h4><strong>{{(room | async).temperature}}</strong></h4>
           </div>
         </div>
         <mdb-card-body>
@@ -40,7 +40,7 @@
           <mdb-icon fas icon="volume-up" class="light-blue lighten-1"></mdb-icon>
           <div class="data">
             <p>Loudness</p>
-            <h4><strong>{{room.loudness}}</strong></h4>
+            <h4><strong>{{(room | async).loudness}}</strong></h4>
           </div>
         </div>
         <mdb-card-body>
@@ -57,7 +57,7 @@
           <mdb-icon fas icon="sun" class="red accent-2"></mdb-icon>
           <div class="data">
             <p>Brightness</p>
-            <h4><strong>{{room.brightness}}</strong></h4>
+            <h4><strong>{{(room | async).brightness}}</strong></h4>
           </div>
         </div>
         <mdb-card-body>
