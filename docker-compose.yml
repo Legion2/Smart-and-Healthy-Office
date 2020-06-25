@@ -60,9 +60,10 @@ services:
     depends_on:
       - broker
   web-app:
-    build: web-app
-    environment:
-      API_HOST_URL: http://${HOST_NAME}/api
+    build:
+      context: web-app
+      args:
+        API_HOST_URL: http://${HOST_NAME}/api
 
 volumes:
   mosquitto-data:
