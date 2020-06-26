@@ -1,5 +1,6 @@
 package io.github.legion2.smart_and_healthy_office.ai
 
+import io.github.legion2.smart_and_healthy_office.pddl.Action
 import io.github.legion2.smart_and_healthy_office.pddl.DownwardPlanner
 import io.github.legion2.smart_and_healthy_office.pddl.Orchestrator
 import io.github.legion2.smart_and_healthy_office.pddl.PddlProblemGenerator
@@ -29,6 +30,8 @@ class AIService {
     @Inject
     lateinit var localizationRepository: LocalizationRepository
 
+    private var history = emptyList<Action>()
+
     @ConfigProperty(name = "ai.enabled")
     var isAIEnabled: Boolean = false
 
@@ -41,9 +44,10 @@ class AIService {
         val rooms = roomRepository.getAll()
         val users = localizationRepository.getAllLocalizedUsers()
 
-        val (domain, problem) = pddlProblemGenerator.generateProblem(rooms, users)
+        val (domain, problem) = pddlProblemGenerator.generateProblem(rooms, users, history)
         val plan = downwardPlanner.generatePlan(domain, problem)
-        println(plan)
-        orchestrator.execute(plan,rooms, users)
+        val actions = orchestrator.execute(plan, rooms, users)
+        println(actions)
+        history = history + actions
     }
 }

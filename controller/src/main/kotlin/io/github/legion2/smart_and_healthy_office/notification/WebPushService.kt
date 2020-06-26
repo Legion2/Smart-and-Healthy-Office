@@ -58,8 +58,8 @@ class WebPushService {
      * @param user the id of the user to send the notification to
      * @param notification the notification send to the client
      */
-    fun <T : Any> sendPushNotification(user: String, notification: io.github.legion2.smart_and_healthy_office.notification.Notification<T>) {
-        val payload = Klaxon().toJsonString(notification).toByteArray()
+    fun sendPushNotification(user: String, notification: io.github.legion2.smart_and_healthy_office.notification.Notification) {
+        val payload = Klaxon().toJsonString(NotificationPayload(notification)).toByteArray()
         subscriptionsPerUser[user].orEmpty()
                 .map { subscriptions.getValue(it) }
                 .forEach { subscription -> sendPushMessage(subscription, payload) }
@@ -99,3 +99,5 @@ class WebPushService {
         }
     }
 }
+
+data class NotificationPayload(val notification: io.github.legion2.smart_and_healthy_office.notification.Notification)
