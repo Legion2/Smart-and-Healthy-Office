@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { Store, select } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { State, selectAuth } from '../reducers';
+import { login, logout } from '../reducers/auth.actions';
 @Injectable()
 export class AuthService {
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn: Observable<boolean>;
 
   get isLoggedIn() {
-    return this.loggedIn.asObservable();
+    return this.loggedIn;
   }
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router,
+    private store: Store<State>
+  ) {
+    this.loggedIn = this.store.select(selectAuth).pipe(select('isLoggedIn'));
+  }
 
-  login() {
-      this.loggedIn.next(true);
-      this.router.navigate(['']);
+  login(user: string) {
+    this.store.dispatch(login({ user: user }));
+    this.router.navigate(['']);
   }
 
   logout() {
-    this.loggedIn.next(false);
+    this.store.dispatch(logout())
     this.router.navigate(['/login']);
   }
 }

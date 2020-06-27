@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from '../../../generated/api/models/room';
 import { SwPush } from '@angular/service-worker';
-import { ApiService } from 'generated/api/services';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'generated/api/models';
-
+import { ApiService } from 'generated/api/services';
+import { selectUser, State } from '../reducers';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   successMessage = '';
   errorMessage = '';
   subscriptionId = '';
+  user: Observable<string>;
 
   ngOnInit(): void {
     this.serverKey = this.apiService.subscriptionsKeyGet().toPromise()
@@ -25,14 +26,16 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private swPush: SwPush,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private store: Store<State>
   ) {
+    this.user = this.store.select(selectUser);
     this.swPush.subscription.forEach(sub => {
       this.subscribed = sub != null;
     });
     this.swPush.notificationClicks.subscribe(
-      ({action, notification}) => {
-          console.log(action, notification);
+      ({ action, notification }) => {
+        console.log(action, notification);
       });
   }
 
@@ -65,7 +68,7 @@ export class HomeComponent implements OnInit {
       });
       const subscriptionBody: Subscription =
       {
-        user: 'user1', subscription: pushSubscription.toJSON() as any
+        user: await this.user.toPromise(), subscription: pushSubscription.toJSON() as any
       };
       try {
         this.subscriptionId = await this.apiService.subscriptionsPost({ body: subscriptionBody }).toPromise();

@@ -11,28 +11,21 @@ import { BehaviorSubject, Subject } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   rooms = new BehaviorSubject<Array<Room>>([]);
-  userLocation: UserLocation = {
-    location: ''
-  };
   username: string;
 
   constructor(private dataService: DataService,
               private authService: AuthService,
               private apiService: ApiService) {
-    this.dataService.rooms.subscribe((data) => {
+    /*this.dataService.rooms.subscribe((data) => {
       this.rooms.next(data);
-    });
-  }
-
-  ngOnInit(): void {
-
+    });*/
+    this.rooms = this.dataService.rooms
   }
 
   onLogin(room: string) {
-    this.userLocation.location = room;
-    this.authService.login();
-    this.apiService.locationUserPost({ user: this.username, body: this.userLocation });
+    this.authService.login(this.username);
+    this.apiService.locationUserPost({ user: this.username, body: { location: room} });
   }
 }
