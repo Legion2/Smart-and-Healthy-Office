@@ -37,7 +37,6 @@ class RoomRepository {
 
     fun update(id: String, update: (Room) -> Room) {
         rooms.computeIfPresent(id) { _, oldValue ->
-            println("Update room: ${oldValue.name}")
             update.invoke(oldValue)
         }
     }

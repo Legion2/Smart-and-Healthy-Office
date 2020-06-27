@@ -1,5 +1,6 @@
 package io.github.legion2.smart_and_healthy_office.notification
 
+import com.beust.klaxon.Klaxon
 import nl.martijndwars.webpush.Notification
 import nl.martijndwars.webpush.PushService
 import nl.martijndwars.webpush.Utils
@@ -55,9 +56,10 @@ class WebPushService {
 
     /**
      * @param user the id of the user to send the notification to
-     * @param payload the payload send to the client
+     * @param notification the notification send to the client
      */
-    fun sendPushNotification(user: String, payload: ByteArray) {
+    fun sendPushNotification(user: String, notification: io.github.legion2.smart_and_healthy_office.notification.Notification) {
+        val payload = Klaxon().toJsonString(NotificationPayload(notification)).toByteArray()
         subscriptionsPerUser[user].orEmpty()
                 .map { subscriptions.getValue(it) }
                 .forEach { subscription -> sendPushMessage(subscription, payload) }
@@ -97,3 +99,5 @@ class WebPushService {
         }
     }
 }
+
+data class NotificationPayload(val notification: io.github.legion2.smart_and_healthy_office.notification.Notification)

@@ -30,6 +30,10 @@ export class HomeComponent implements OnInit {
     this.swPush.subscription.forEach(sub => {
       this.subscribed = sub != null;
     });
+    this.swPush.notificationClicks.subscribe(
+      ({action, notification}) => {
+          console.log(action, notification);
+      });
   }
 
   onSubscribe() {

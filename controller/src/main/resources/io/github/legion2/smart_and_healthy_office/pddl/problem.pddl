@@ -14,6 +14,7 @@
 (:init
 {{#users}}
     (is_currently_at {{userId}} {{currentRoom}})
+    (= (change_room_cool_down {{userId}}) {{changeRoomCoolDown}})
 {{/users}}
 {{#rooms}}
     (= (stress {{roomId}}) {{stress}})
@@ -24,7 +25,8 @@
 
 
 (:goal
-    (forall (?u - user) (exists (?r - room) (is_next_at ?u ?r)))
+    (forall (?u - user) (and (exists (?r - room) (is_next_at ?u ?r))
+                                (not (extra_cost_change_room_cool_down ?u))))
 )
 (:metric minimize (total-cost))
 )

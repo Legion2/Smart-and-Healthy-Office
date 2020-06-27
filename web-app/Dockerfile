@@ -9,4 +9,5 @@ RUN envsubst < src/environments/environment.prod.ts.template > src/environments/
 
 # Deploy Angular App
 FROM nginx:1.19-alpine
+COPY --from=builder /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/dist/web-app /usr/share/nginx/html
