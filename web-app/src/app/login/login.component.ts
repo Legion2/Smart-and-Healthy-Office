@@ -22,8 +22,7 @@ export class LoginComponent {
   }
 
   onLogin(room: Room) {
-    this.authService.login(this.username);
-    this.dataService.setUserRoom(room);
+    this.authService.login(this.username, room.id);
     this.apiService.locationUserPost({ user: this.username, body: { location: room.id} });
   }
 }

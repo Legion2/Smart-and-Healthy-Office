@@ -44,7 +44,7 @@ import { NotificationComponent } from './notification/notification.component';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
     MatToolbarModule,
     MatTabsModule,
     MatIconModule,

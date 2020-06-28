@@ -6,21 +6,12 @@ import { ApiService } from '../../../generated/api/services/api.service';
 @Injectable()
 export class DataService {
   private _rooms = new BehaviorSubject<Array<Room>>([]);
-  private userRoom: Room | null
 
   get rooms() {
     return this._rooms.asObservable();
   }
   constructor(private apiService: ApiService) {
     this.getRoomsByIntervall();
-  }
-
-  setUserRoom(userRoom: Room) {
-    this.userRoom = userRoom;
-  }
-
-  getUserRoom(): Room {
-    return this.userRoom;
   }
 
   private getRooms() {

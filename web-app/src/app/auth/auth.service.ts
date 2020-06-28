@@ -19,8 +19,8 @@ export class AuthService {
     this.loggedIn = this.store.select(selectAuth).pipe(select('isLoggedIn'));
   }
 
-  login(user: string) {
-    this.store.dispatch(login({ user: user }));
+  login(user: string, room: string) {
+    this.store.dispatch(login({ user: user, room: room }));
     this.router.navigate(['']);
   }
 
