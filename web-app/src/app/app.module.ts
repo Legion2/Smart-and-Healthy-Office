@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { RoomPageComponent } from './room-page/room-page.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RoomPageComponent } from './room-page/room-page.component';
     HomeComponent,
     NavBarComponent,
     RoomPageComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
