@@ -1,13 +1,14 @@
 <mat-toolbar color="primary" class="toolbar" *ngIf="isLoggedIn | async ">
   <div>
     <nav mat-tab-nav-bar class="tabs" backgroundColor="primary">
-      <a mat-tab-link
+      <div mat-tab-link *ngFor="let room of rooms | async" (click)="onSelect(room)" [active]="currentRoom.id == room.id">{{room.name}}</div>
+      <!--<a mat-tab-link
          *ngFor="let link of navLinks"
          [routerLink]="link.link"
          routerLinkActive #rla="routerLinkActive"
          [active]="rla.isActive">
         {{link.label}}
-      </a>
+      </a>-->
     </nav>
   </div>
   <div class="container" style="width: 300px">

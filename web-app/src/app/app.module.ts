@@ -25,6 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { RoomPageComponent } from './room-page/room-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { reducers, metaReducers } from './reducers';
     LoginComponent,
     HomeComponent,
     NavBarComponent,
+    RoomPageComponent,
   ],
   imports: [
     BrowserModule,

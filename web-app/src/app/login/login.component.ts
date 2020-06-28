@@ -4,7 +4,7 @@ import { DataService } from '../shared/data.service';
 import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../../../generated/api/services/api.service';
 import { UserLocation } from '../../../generated/api/models/user-location';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +12,18 @@ import { BehaviorSubject, Subject } from 'rxjs';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  rooms = new BehaviorSubject<Array<Room>>([]);
+  rooms: Observable<Room[]>;
   username: string;
 
   constructor(private dataService: DataService,
               private authService: AuthService,
               private apiService: ApiService) {
-    /*this.dataService.rooms.subscribe((data) => {
-      this.rooms.next(data);
-    });*/
     this.rooms = this.dataService.rooms
   }
 
-  onLogin(room: string) {
+  onLogin(room: Room) {
     this.authService.login(this.username);
-    this.apiService.locationUserPost({ user: this.username, body: { location: room} });
+    this.dataService.setUserRoom(room);
+    this.apiService.locationUserPost({ user: this.username, body: { location: room.id} });
   }
 }
