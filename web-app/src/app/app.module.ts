@@ -23,6 +23,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { RoomPageComponent } from './room-page/room-page.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -31,24 +35,29 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     NavBarComponent,
+    RoomPageComponent,
+    NotificationComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MDBBootstrapModule.forRoot(),
-        ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-        MatToolbarModule,
-        MatTabsModule,
-        MatIconModule,
-        HttpClientModule,
-        MatCardModule,
-        MatInputModule,
-        MatButtonModule,
-        MatProgressBarModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
+    ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
+    MatToolbarModule,
+    MatTabsModule,
+    MatIconModule,
+    HttpClientModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    FormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    })
+  ],
   providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

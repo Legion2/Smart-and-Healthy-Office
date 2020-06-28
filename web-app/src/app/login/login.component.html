@@ -16,7 +16,7 @@
         </div>
         <label>In which room are you currently?</label>
         <div class="btn-toolbar mt-0">
-          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin(room.id)">{{room.name}}</button>
+          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin(room)">{{room.name}}</button>
         </div>
       </mdb-card-body>
     </mdb-card>

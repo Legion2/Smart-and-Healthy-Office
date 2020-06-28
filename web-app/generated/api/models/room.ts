@@ -7,5 +7,6 @@ export interface Room {
   name: string;
   presence: number;
   size: number;
+  stress: number;
   temperature: number;
 }

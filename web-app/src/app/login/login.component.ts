@@ -4,35 +4,25 @@ import { DataService } from '../shared/data.service';
 import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../../../generated/api/services/api.service';
 import { UserLocation } from '../../../generated/api/models/user-location';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  rooms = new BehaviorSubject<Array<Room>>([]);
-  userLocation: UserLocation = {
-    location: ''
-  };
+export class LoginComponent {
+  rooms: Observable<Room[]>;
   username: string;
 
   constructor(private dataService: DataService,
               private authService: AuthService,
               private apiService: ApiService) {
-    this.dataService.rooms.subscribe((data) => {
-      this.rooms.next(data);
-    });
+    this.rooms = this.dataService.rooms
   }
 
-  ngOnInit(): void {
-
-  }
-
-  onLogin(room: string) {
-    this.userLocation.location = room;
-    this.authService.login();
-    this.apiService.locationUserPost({ user: this.username, body: this.userLocation });
+  onLogin(room: Room) {
+    this.authService.login(this.username, room.id);
+    this.apiService.locationUserPost({ user: this.username, body: { location: room.id} });
   }
 }
