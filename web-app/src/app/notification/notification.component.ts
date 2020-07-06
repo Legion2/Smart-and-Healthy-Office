@@ -5,6 +5,7 @@ import { Subscription } from 'generated/api/models';
 import { ApiService } from 'generated/api/services';
 import { selectUser, State } from '../reducers';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-notification',
@@ -70,7 +71,7 @@ export class NotificationComponent implements OnInit {
       });
       const subscriptionBody: Subscription =
       {
-        user: await this.user.toPromise(), subscription: pushSubscription.toJSON() as any
+        user: await this.user.pipe(take(1)).toPromise(), subscription: pushSubscription.toJSON() as any
       };
       try {
         this.subscriptionId = await this.apiService.subscriptionsPost({ body: subscriptionBody }).toPromise();
