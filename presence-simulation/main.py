@@ -8,7 +8,9 @@ import random
 mqtt_host = os.getenv("MQTT_HOST", "localhost")
 mqtt_port = os.getenv("MQTT_PORT", 1883)
 rooms_config_path = os.getenv("ROOMS_CONFIG_FILE", "rooms.json")
-localization_config_path = os.getenv("LOCALIZATION_CONFIG_FILE", "localization.json")
+localization_config_path = os.getenv(
+    "LOCALIZATION_CONFIG_FILE", "localization.json")
+mapping_file = os.getenv("PRESENCE_MAPPING_FILE", "")
 base_topic = "test/"
 
 
@@ -44,6 +46,18 @@ def load_data():
             users.append(User(user_config["id"], user_config["mac"]))
 
 
+def load_mapping():
+    try:
+        with open(mapping_file) as json_file:
+            mapping = json.load(json_file)
+            for user in users:
+                if user.id in mapping:
+                    user.room = next(
+                        (room for room in rooms if room.id == mapping[user.id]), None)
+    except:
+        print("exception in load_mapping")
+
+
 def send_mqtt(room_id: str, presence: int):
     json_string = json.dumps({"name": "presence",
                               "fields": {
@@ -56,6 +70,8 @@ def send_mqtt(room_id: str, presence: int):
 
 
 def send_location(user: User):
+    if user.room == None:
+        return
     json_string = json.dumps({"name": "location",
                               "fields": {
                                   "mac": user.mac
@@ -80,14 +96,18 @@ client.connect(mqtt_host, mqtt_port, 60)
 
 client.loop_start()
 
-# assign random room to users
-for user in users:
-    room_index = random.randint(0, len(rooms) - 1)
-    room = rooms[room_index]
-    user.room = room
+if mapping_file == "":
+    # assign random room to users
+    for user in users:
+        room_index = random.randint(0, len(rooms) - 1)
+        room = rooms[room_index]
+        user.room = room
 
 
 while True:
+    if mapping_file != "":
+        load_mapping()
+
     for room in rooms:
         users_in_room = [user for user in users if user.room == room]
         send_mqtt(room.id, len(users_in_room))

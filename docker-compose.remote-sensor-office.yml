@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  remote-sensor-office:
+    build: sensor-simulation
+    environment:
+      MQTT_HOST: ${REMOTE_MQTT_HOST}
+      ROOM_ID: office

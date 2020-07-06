@@ -3,6 +3,7 @@ version: '3'
 services:
   proxy:
     build: proxy-production
+    restart: unless-stopped
     volumes:
       - certificates:/etc/letsencrypt
     ports:
@@ -17,6 +18,7 @@ services:
       - web-app
   broker:
     build: broker
+    restart: unless-stopped
     ports:
       - "1883:1883"
     volumes:
@@ -24,6 +26,7 @@ services:
       - mosquitto-log:/mosquitto/log
   controller:
     build: controller
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
       MQTT_PORT: "1883"
@@ -31,6 +34,7 @@ services:
       - broker
   sensor-kitchen:
     build: sensor-simulation
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
       ROOM_ID: kitchen
@@ -38,6 +42,7 @@ services:
       - broker
   sensor-office:
     build: sensor-simulation
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
       ROOM_ID: office
@@ -45,6 +50,7 @@ services:
       - broker
   sensor-meeting-room:
     build: sensor-simulation
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
       ROOM_ID: meeting-room
@@ -52,6 +58,7 @@ services:
       - broker
   sensor-shared-room:
     build: sensor-simulation
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
       ROOM_ID: shared-room
@@ -59,6 +66,7 @@ services:
       - broker
   presence-simulation:
     build: presence-simulation
+    restart: unless-stopped
     environment:
       MQTT_HOST: broker
     depends_on:
@@ -68,7 +76,7 @@ services:
       context: web-app
       args:
         API_HOST_URL: https://${HOST_NAME}/api
-
+    restart: unless-stopped
 
 volumes:
   mosquitto-data:
