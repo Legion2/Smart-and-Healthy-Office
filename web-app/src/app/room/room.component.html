@@ -9,14 +9,10 @@
           <mdb-icon far icon="tint" class="primary-color"></mdb-icon>
           <div class="data">
             <p>Humidity</p>
-            <h4><strong>{{room.humidity}}</strong></h4>
+            <h4><strong>{{room.humidity * 100 | number:'1.0-0' }} %</strong></h4>
           </div>
         </div>
         <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
         </mdb-card-body>
       </mdb-card>
     </div>
@@ -27,14 +23,10 @@
           <mdb-icon fas icon="thermometer-quarter" class="warning-color"></mdb-icon>
           <div class="data">
             <p>Temperature</p>
-            <h4><strong>{{room.temperature}}</strong></h4>
+            <h4><strong>{{room.temperature | number: '1.0-2'}} °C</strong></h4>
           </div>
         </div>
         <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar bg grey darken-2" role="progressbar" style="width: 25%"
-                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
         </mdb-card-body>
       </mdb-card>
     </div>
@@ -45,14 +37,10 @@
           <mdb-icon fas icon="volume-up" class="light-blue lighten-1"></mdb-icon>
           <div class="data">
             <p>Loudness</p>
-            <h4><strong>{{room.loudness}}</strong></h4>
+            <h4><strong>{{room.loudness | number: '1.0-0'}} dB</strong></h4>
           </div>
         </div>
         <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar grey darken-2" role="progressbar" style="width: 75%" aria-valuenow="75"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
         </mdb-card-body>
       </mdb-card>
     </div>
@@ -63,14 +51,10 @@
           <mdb-icon fas icon="sun" class="red accent-2"></mdb-icon>
           <div class="data">
             <p>Brightness</p>
-            <h4><strong>{{room.brightness}}</strong></h4>
+            <h4><strong>{{room.brightness| number: '1.0-0'}} Lux</strong></h4>
           </div>
         </div>
         <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar grey darken-2" role="progressbar" style="width: 25%" aria-valuenow="25"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
         </mdb-card-body>
       </mdb-card>
     </div>
@@ -85,8 +69,8 @@
       <div class="card-header text-center">
         Stress level of the room
       </div>
-      <!--TODO: % value of stress (%) + function AI response (String) -->
-      <mat-card-subtitle>The room's stress level is= {{room.stress}}(%) </mat-card-subtitle>
+      <!--TODO: function AI response (String) -->
+      <mat-card-subtitle>The room's stress level is {{room.stress}}%</mat-card-subtitle>
       <mdb-card-body>
         <mat-progress-bar [value]="room.stress"></mat-progress-bar>
       </mdb-card-body>
