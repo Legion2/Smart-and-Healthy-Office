@@ -1,0 +1,10 @@
+version: '3'
+
+services: 
+  remote-presence-simulation:
+    build: presence-simulation
+    volumes: 
+      - ./presence.json:/presence.json:ro
+    environment:
+      MQTT_HOST: ${REMOTE_MQTT_HOST}
+      PRESENCE_MAPPING_FILE: /presence.json
