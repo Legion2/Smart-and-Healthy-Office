@@ -1,3 +1,10 @@
-.example-button-container {
-  margin-left:auto; margin-right:0
+div, body, material-app, mat-sidenav-container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+button:focus, button:active:focus, button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
 }

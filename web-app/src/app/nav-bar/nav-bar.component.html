@@ -1,19 +1,15 @@
-<mat-toolbar color="primary" class="toolbar" *ngIf="isLoggedIn | async ">
-  <div>
-    <nav mat-tab-nav-bar class="tabs" backgroundColor="primary">
-      <div mat-tab-link *ngFor="let room of rooms | async" (click)="onSelect(room)" [active]="currentRoom.id == room.id">{{room.name}}</div>
-      <!--<a mat-tab-link
-         *ngFor="let link of navLinks"
-         [routerLink]="link.link"
-         routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive">
-        {{link.label}}
-      </a>-->
-    </nav>
-  </div>
-  <div class="example-button-container">
-    <button mdbBtn type="button" color="primary" mdbWavesEffect (click)="onLogout()">
-      <mdb-icon fas icon="sign-out-alt"></mdb-icon>
+<div>
+  <mat-toolbar color="primary" *ngIf="isLoggedIn | async">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
     </button>
-  </div>
-</mat-toolbar>
+    <span>Smart & Healthy Office</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer mode="side">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet>
+      </router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

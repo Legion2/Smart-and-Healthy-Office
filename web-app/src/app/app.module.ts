@@ -27,6 +27,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { RoomPageComponent } from './room-page/room-page.component';
 import { NotificationComponent } from './notification/notification.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { NotificationComponent } from './notification/notification.component';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     ApiModule.forRoot({ rootUrl: environment.BACKEND_URL }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production, registrationStrategy: 'registerImmediately'
+    }),
     MatToolbarModule,
     MatTabsModule,
     MatIconModule,
@@ -56,7 +59,8 @@ import { NotificationComponent } from './notification/notification.component';
     FormsModule,
     StoreModule.forRoot(reducers, {
       metaReducers
-    })
+    }),
+    MatSidenavModule
   ],
   providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent],

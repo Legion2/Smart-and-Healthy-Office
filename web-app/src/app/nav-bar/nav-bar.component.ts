@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit {
               private router: Router) {
 
     this.rooms = this.dataService.rooms;
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
   ngOnInit() {
@@ -36,6 +37,8 @@ export class NavBarComponent implements OnInit {
         this.navLinks.find((tab) => tab.link === '.' + this.router.url)
       );
     });
+
+    console.log(this.selectRoom);
   }
 
   onLogout() {
