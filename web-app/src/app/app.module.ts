@@ -27,6 +27,8 @@ import { reducers, metaReducers } from './reducers';
 import { RoomPageComponent } from './room-page/room-page.component';
 import { NotificationComponent } from './notification/notification.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatButtonToggleModule
   ],
   providers: [DataService, AuthGuard, AuthService],
   bootstrap: [AppComponent],

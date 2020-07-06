@@ -21,10 +21,10 @@ export class RoomPageComponent implements OnInit {
   rooms: Observable<Room[]>;
 
   constructor(private store: Store<State>,
-    private dataService: DataService) {
+              private dataService: DataService) {
   }
 
-  selectRoom(room: Room) {
+  onSelectRoom(room: Room) {
     this.selectedRoomId.next(room.id);
   }
 

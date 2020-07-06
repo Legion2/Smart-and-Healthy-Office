@@ -6,9 +6,9 @@
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer mode="side">
-    <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action waves-effect" *ngFor="let room of rooms | async">{{room.name}}</a>
-    </div>
+    <mat-action-list>
+      <button mat-list-item *ngFor="let room of rooms | async" (click)="onSelectRoom(room)">{{room.name}}</button>
+    </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-room [room]="selectedRoom"></app-room>
