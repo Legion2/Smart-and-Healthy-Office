@@ -18,6 +18,8 @@ export class RoomPageComponent implements OnInit {
 
   selectedRoom: Room;
 
+  rooms: Observable<Room[]>;
+
   constructor(private store: Store<State>,
     private dataService: DataService) {
   }
@@ -27,6 +29,7 @@ export class RoomPageComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.rooms = this.dataService.rooms;
     this.selectedRoomId = new BehaviorSubject<string>(null);
     this.store.select(selectUserRoom).pipe(take(1)).toPromise().then(test => this.selectedRoomId.next(test));
     combineLatest(this.dataService.rooms, this.selectedRoomId.asObservable()).pipe(map(([list, selectedId]) => list.find(room => room.id === selectedId))).subscribe(room => this.selectedRoom = room);

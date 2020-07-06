@@ -19,7 +19,6 @@ import { DataService } from './shared/data.service';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth/auth.service';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +34,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     RoomComponent,
     LoginComponent,
     HomeComponent,
-    NavBarComponent,
     RoomPageComponent,
     NotificationComponent,
   ],
