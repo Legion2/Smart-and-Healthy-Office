@@ -1,5 +1,8 @@
 # Smart and Healthy Office
 
+This is a prototype for a study project, it has no security build in and the code does not represent best practice.
+Use at your own risk.
+
 This project consists of sensors (simulated), a Controller with Repository and Web Server and a WebApp.
 ## Getting started
 Clone this repository.
