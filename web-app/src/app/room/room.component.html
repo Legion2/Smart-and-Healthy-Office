@@ -1,130 +1,80 @@
 <section class="mt-lg-5">
   <div class="container">
-  <!--Sensors ROW-->
-  <div class="row">
-    <!--HUMIDITY BOX-->
-    <div class="col-xl-3 col-md-6 mb-r">
-      <mdb-card cascade="true" class="cascading-admin-card">
-        <div class="admin-up">
-          <mdb-icon far icon="tint" class="primary-color"></mdb-icon>
-          <div class="data">
-            <p>Humidity</p>
-            <h4><strong>{{room.humidity}}</strong></h4>
+    <!--Sensors ROW-->
+    <div class="row">
+      <!--HUMIDITY BOX-->
+      <div class="col-xl-3 col-md-6 mb-r mb-4">
+        <mdb-card cascade="true" class="cascading-admin-card">
+          <div class="admin-up">
+            <mdb-icon far icon="tint" class="primary-color"></mdb-icon>
+            <div class="data">
+              <p>Humidity</p>
+              <h4><strong>{{room.humidity * 100 | number:'1.0-0' }} %</strong></h4>
+            </div>
           </div>
-        </div>
-        <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25"
-                 aria-valuemin="0" aria-valuemax="100"></div>
+          <mdb-card-body>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+      <!--Temperature BOX-->
+      <div class="col-xl-3 col-md-6 mb-r mb-4">
+        <mdb-card cascade="true" class="cascading-admin-card">
+          <div class="admin-up">
+            <mdb-icon fas icon="thermometer-quarter" class="warning-color"></mdb-icon>
+            <div class="data">
+              <p>Temperature</p>
+              <h4><strong>{{room.temperature | number: '1.0-2'}} °C</strong></h4>
+            </div>
           </div>
-        </mdb-card-body>
-      </mdb-card>
+          <mdb-card-body>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+      <!--Loudness BOX-->
+      <div class="col-xl-3 col-md-6 mb-r mb-4">
+        <mdb-card cascade="true" class="cascading-admin-card">
+          <div class="admin-up">
+            <mdb-icon fas icon="volume-up" class="light-blue lighten-1"></mdb-icon>
+            <div class="data">
+              <p>Loudness</p>
+              <h4><strong>{{room.loudness | number: '1.0-0'}} dB</strong></h4>
+            </div>
+          </div>
+          <mdb-card-body>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+      <!--Brightness BOX-->
+      <div class="col-xl-3 col-md-6 mb-r mb-4">
+        <mdb-card cascade="true" class="cascading-admin-card">
+          <div class="admin-up">
+            <mdb-icon fas icon="sun" class="red accent-2"></mdb-icon>
+            <div class="data">
+              <p>Brightness</p>
+              <h4><strong>{{room.brightness| number: '1.0-0'}} Lux</strong></h4>
+            </div>
+          </div>
+          <mdb-card-body>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
     </div>
-    <!--Temperature BOX-->
-    <div class="col-xl-3 col-md-6 mb-r">
-      <mdb-card cascade="true" class="cascading-admin-card">
-        <div class="admin-up">
-          <mdb-icon fas icon="thermometer-quarter" class="warning-color"></mdb-icon>
-          <div class="data">
-            <p>Temperature</p>
-            <h4><strong>{{room.temperature}}</strong></h4>
-          </div>
-        </div>
-        <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar bg grey darken-2" role="progressbar" style="width: 25%"
-                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </mdb-card-body>
-      </mdb-card>
+    <div class="row justify-content-center align-items-center">
+      <!--Stress bar -->
+      <div class="col-md-6 mb-r mb-4">
+        <mdb-card>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>Stress level of the room</h4>
+            </mdb-card-title>
+            <!--TODO: function AI response (String) -->
+            <mdb-card-text>The room's stress level is {{room.stress}}%
+              <mat-progress-bar [value]="room.stress"> </mat-progress-bar>
+              AI response = ???(String)
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
     </div>
-    <!--Loudness BOX-->
-    <div class="col-xl-3 col-md-6 mb-r">
-      <mdb-card cascade="true" class="cascading-admin-card">
-        <div class="admin-up">
-          <mdb-icon fas icon="volume-up" class="light-blue lighten-1"></mdb-icon>
-          <div class="data">
-            <p>Loudness</p>
-            <h4><strong>{{room.loudness}}</strong></h4>
-          </div>
-        </div>
-        <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar grey darken-2" role="progressbar" style="width: 75%" aria-valuenow="75"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-   <!--Brightness BOX-->
-    <div class="col-xl-3 col-md-6 mb-r">
-      <mdb-card cascade="true" class="cascading-admin-card">
-        <div class="admin-up">
-          <mdb-icon fas icon="sun" class="red accent-2"></mdb-icon>
-          <div class="data">
-            <p>Brightness</p>
-            <h4><strong>{{room.brightness}}</strong></h4>
-          </div>
-        </div>
-        <mdb-card-body>
-          <div class="progress">
-            <div class="progress-bar grey darken-2" role="progressbar" style="width: 25%" aria-valuenow="25"
-                 aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-  </div>
   </div>
 </section>
-
-<!--Stress bar -->
-<div class="row wow fadeIn mt-5">
-  <div class="col-md-3 mb-4">
-    <mdb-card class="mb-4">
-      <div class="card-header text-center">
-        Stress level of the room
-      </div>
-      <!--TODO: % value of stress (%) + function AI response (String) -->
-      <mat-card-subtitle>The room's stress level is= {{room.stress}}(%) </mat-card-subtitle>
-      <mdb-card-body>
-        <mat-progress-bar [value]="room.stress"></mat-progress-bar>
-      </mdb-card-body>
-      <mat-card-subtitle> AI response = ???(String)</mat-card-subtitle>
-    </mdb-card>
-  </div>
-
-<!--trends-->
-  <div class="col-md-3 mb-4">
-    <mdb-card class="mb-4">
-      <div class="card-header text-center">
-        Trends in the room
-      </div>
-      <mdb-card-body>
-        <div class="list-group list-group-flush">
-          <a class="list-group-item list-group-item-action waves-effect">Humidity
-            <mdb-badge success="true" pill="true" class="pull-right">22%
-              <mdb-icon fas icon="arrow-up" class="ml-1"></mdb-icon>
-            </mdb-badge>
-          </a>
-          <a class="list-group-item list-group-item-action waves-effect">Loudness
-            <mdb-badge danger="true" pill="true" class="pull-right">5%
-              <mdb-icon fas icon="arrow-down" class="ml-1"></mdb-icon>
-            </mdb-badge>
-          </a>
-          <a class="list-group-item list-group-item-action waves-effect">Temperature
-            <mdb-badge success="true" pill="true" class="pull-right">22%
-              <mdb-icon fas icon="arrow-up" class="ml-1"></mdb-icon>
-            </mdb-badge>
-          </a>
-          <a class="list-group-item list-group-item-action waves-effect">Brightness
-            <mdb-badge danger="true" pill="true" class="pull-right">5%
-              <mdb-icon fas icon="arrow-down" class="ml-1"></mdb-icon>
-            </mdb-badge>
-          </a>
-        </div>
-      </mdb-card-body>
-    </mdb-card>
-  </div>
-</div>
-
