@@ -1,12 +1,13 @@
 button:focus, button:active:focus, button.active:focus {
   outline: none !important;
-  outline-style: none !important;
 }
 
-html, body, material-app, mat-sidenav-container {
+mat-sidenav-container {
+  position: fixed;
   height: 100%;
+  min-height: 100%;
   width: 100%;
-  margin: 0;
+  min-width: 100%;
 }
 
 .mat-sidenav{
