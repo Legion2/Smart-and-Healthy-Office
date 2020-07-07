@@ -19,7 +19,7 @@ RUN hg clone http://hg.fast-downward.org . -r release-19.06.0
 RUN ./build.py
 RUN strip --strip-all builds/release/bin/downward
 
-FROM maven:3.6.3-jdk-11 AS builder
+FROM maven:3.6.3-jdk-14 AS builder
 WORKDIR /src
 COPY pom.xml /src
 RUN mvn dependency:go-offline
