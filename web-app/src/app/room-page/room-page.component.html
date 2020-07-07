@@ -1,11 +1,23 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Smart & Healthy Office</span>
+<mat-toolbar class="primary-color">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Smart & Healthy Office</span>
+    <button id="logoutButton" mat-icon-button (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side">
+  <mat-sidenav #drawer mode="side" class="primary-color">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <img class="avatar img-thumbnail mt-2" src="assets/icons/placeholder.png">
+      <p>{{user | async}}</p>
+    </div>
+    <hr>
+    <p class="text">Rooms</p>
+    <hr>
     <mat-action-list>
       <button mat-list-item *ngFor="let room of rooms | async" (click)="onSelectRoom(room)">{{room.name}}</button>
     </mat-action-list>

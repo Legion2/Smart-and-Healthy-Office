@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { State, selectUserRoom, selectUser } from '../reducers';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class RoomPageComponent implements OnInit {
 
   selectedRoom: Room;
 
+  user: BehaviorSubject<string>;
+
   rooms: Observable<Room[]>;
 
   constructor(private store: Store<State>,
-              private dataService: DataService) {
+              private dataService: DataService,
+              private authService: AuthService) {
   }
 
   onSelectRoom(room: Room) {
@@ -29,9 +33,14 @@ export class RoomPageComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.store.select(selectUser).pipe(take(1)).toPromise().then(test => console.log(test));
     this.rooms = this.dataService.rooms;
     this.selectedRoomId = new BehaviorSubject<string>(null);
     this.store.select(selectUserRoom).pipe(take(1)).toPromise().then(test => this.selectedRoomId.next(test));
     combineLatest(this.dataService.rooms, this.selectedRoomId.asObservable()).pipe(map(([list, selectedId]) => list.find(room => room.id === selectedId))).subscribe(room => this.selectedRoom = room);
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 }

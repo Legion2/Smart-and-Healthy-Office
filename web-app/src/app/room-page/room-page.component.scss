@@ -12,3 +12,27 @@ html, body, material-app, mat-sidenav-container {
 .mat-sidenav{
   width: 200px;
 }
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.mat-toolbar {
+  color: white;
+}
+
+.mat-list-item {
+  color: white;
+}
+
+.text {
+  color: white;
+  text-align:center;
+}
+
+#logoutButton {
+  margin-left: auto;
+  margin-right: 0;
+}
