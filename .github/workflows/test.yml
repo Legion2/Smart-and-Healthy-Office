@@ -30,4 +30,9 @@ jobs:
       run: npm install -g @angular/cli
     - name: Test web-app
       run: ng build
-
+  docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Dockerfiles
+      run: docker-compose build --pull
