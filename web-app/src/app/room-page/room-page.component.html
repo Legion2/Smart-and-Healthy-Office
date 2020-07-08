@@ -1,16 +1,14 @@
 <mat-toolbar class="primary-color">
-  <mat-toolbar-row>
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Smart & Healthy Office</span>
+    <span>Smart & Healthy Office </span>
     <div class="d-flex align-items-center justify-content-center spacer">
         {{selectedRoom.name}}
     </div>
     <button id="logoutButton" mat-icon-button (click)="onLogout()">
       <mat-icon>logout</mat-icon>
     </button>
-  </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer mode="side" class="primary-color">
@@ -18,17 +16,17 @@
       <img class="avatar img-thumbnail m-2" src="assets/icons/placeholder.png">
       <h5 class="text m-2">{{user | async}}</h5>
     </div>
-    <hr>
-    <p class="text">Rooms</p>
+    <mat-divider></mat-divider>
+    <p class="text m-3">Rooms</p>
     <mat-action-list>
       <button mat-list-item *ngFor="let room of rooms | async" (click)="onSelectRoom(room)">{{room.name}}</button>
     </mat-action-list>
-    <hr>
     <mat-action-list>
+      <mat-divider></mat-divider>
     <button mat-list-item>
       <mat-icon class="mr-1">settings</mat-icon> Settings
     </button>
-      <hr>
+      <mat-divider></mat-divider>
     </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content>
