@@ -4,6 +4,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Smart & Healthy Office</span>
+    <div class="d-flex align-items-center justify-content-center spacer">
+        {{selectedRoom.name}}
+    </div>
     <button id="logoutButton" mat-icon-button (click)="onLogout()">
       <mat-icon>logout</mat-icon>
     </button>
