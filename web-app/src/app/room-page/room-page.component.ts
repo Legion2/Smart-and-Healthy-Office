@@ -19,7 +19,7 @@ export class RoomPageComponent implements OnInit {
 
   selectedRoom: Room;
 
-  user: BehaviorSubject<string>;
+  user: Observable<string>;
 
   rooms: Observable<Room[]>;
 
@@ -33,7 +33,7 @@ export class RoomPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.store.select(selectUser).pipe(take(1)).toPromise().then(test => console.log(test));
+    this.user = this.store.select(selectUser).pipe(take(1));
     this.rooms = this.dataService.rooms;
     this.selectedRoomId = new BehaviorSubject<string>(null);
     this.store.select(selectUserRoom).pipe(take(1)).toPromise().then(test => this.selectedRoomId.next(test));

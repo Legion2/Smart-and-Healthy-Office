@@ -11,15 +11,21 @@
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer mode="side" class="primary-color">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <img class="avatar img-thumbnail mt-2" src="assets/icons/placeholder.png">
-      <p>{{user | async}}</p>
+    <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+      <img class="avatar img-thumbnail m-2" src="assets/icons/placeholder.png">
+      <h5 class="text m-2">{{user | async}}</h5>
     </div>
     <hr>
     <p class="text">Rooms</p>
-    <hr>
     <mat-action-list>
       <button mat-list-item *ngFor="let room of rooms | async" (click)="onSelectRoom(room)">{{room.name}}</button>
+    </mat-action-list>
+    <hr>
+    <mat-action-list>
+    <button mat-list-item>
+      <mat-icon class="mr-1">settings</mat-icon> Settings
+    </button>
+      <hr>
     </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content>
