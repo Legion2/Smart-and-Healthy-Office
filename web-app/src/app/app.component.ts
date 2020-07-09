@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from './shared/data.service';
-import { Router } from '@angular/router';
-import { ApiService } from '../../generated/api/services/api.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private dataService: DataService,
               private authService: AuthService,
               private apiService: ApiService) {
-    this.rooms = this.dataService.rooms
+    this.rooms = this.dataService.rooms;
   }
 
   onLogin(room: Room) {

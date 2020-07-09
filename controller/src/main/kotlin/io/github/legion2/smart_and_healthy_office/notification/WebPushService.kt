@@ -61,7 +61,7 @@ class WebPushService {
     fun sendPushNotification(user: String, notification: io.github.legion2.smart_and_healthy_office.notification.Notification) {
         val payload = Klaxon().toJsonString(NotificationPayload(notification)).toByteArray()
         subscriptionsPerUser[user].orEmpty()
-                .map { subscriptions.getValue(it) }
+                .mapNotNull { subscriptions[it] }
                 .forEach { subscription -> sendPushMessage(subscription, payload) }
     }
 

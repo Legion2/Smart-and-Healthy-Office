@@ -13,11 +13,11 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>1.5.0.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>1.5.2.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>1.5.0.Final</quarkus.platform.version>
-    <surefire-plugin.version>2.22.1</surefire-plugin.version>
+    <quarkus.platform.version>1.5.2.Final</quarkus.platform.version>
+    <surefire-plugin.version>2.22.2</surefire-plugin.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -80,7 +80,7 @@
     <dependency>
       <groupId>com.beust</groupId>
       <artifactId>klaxon</artifactId>
-      <version>5.0.1</version>
+      <version>5.2</version>
     </dependency>
     <dependency>
       <groupId>com.github.spullara.mustache.java</groupId>
@@ -95,7 +95,7 @@
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcpkix-jdk15on</artifactId>
-      <version>1.65</version>
+      <version>1.66</version>
     </dependency>
   </dependencies>
   <repositories>

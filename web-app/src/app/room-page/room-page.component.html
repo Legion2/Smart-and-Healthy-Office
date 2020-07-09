@@ -1,2 +1,36 @@
-<app-nav-bar [currentRoom]="selectedRoom" (selectRoom)="selectRoom($event)"></app-nav-bar>
-<app-room [room]="selectedRoom"></app-room>>
+<mat-toolbar class="primary-color z-depth-2">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span *ngIf="!mobileQuery.matches">Smart & Healthy Office </span>
+  <div class="d-flex align-items-center justify-content-center spacer">
+    {{selectedRoom.name}}
+  </div>
+  <button id="logoutButton" mat-icon-button (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="primary-color z-depth-2">
+    <div class="d-flex flex-column justify-content-center align-items-center m-3">
+      <img class="avatar img-thumbnail m-2" src="assets/icons/placeholder.png">
+      <h5 class="text m-2">{{user | async}}</h5>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="text m-3">Rooms</p>
+    <mat-action-list>
+      <button mat-list-item *ngFor="let room of rooms | async" (click)="onSelectRoom(room)">{{room.name}}</button>
+    </mat-action-list>
+    <mat-action-list>
+      <mat-divider></mat-divider>
+      <button mat-list-item (click)="showSettings = true">
+        <mat-icon class="mr-1">settings</mat-icon> Settings
+      </button>
+      <mat-divider></mat-divider>
+    </mat-action-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-room *ngIf="!showSettings" [room]="selectedRoom"></app-room>
+    <app-notification *ngIf="showSettings"></app-notification>
+  </mat-sidenav-content>
+</mat-sidenav-container>

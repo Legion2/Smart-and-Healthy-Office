@@ -12,12 +12,12 @@ export const initialState: State = {
   room: null
 };
 
-const scoreboardReducer = createReducer(
+const authReducer = createReducer(
   initialState,
   on(Actions.login, (state, action) => ({ ...state, isLoggedIn: true, user: action.user, room: action.room })),
   on(Actions.logout, state => ({ ...state, isLoggedIn: false, user: null, room: null }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
-  return scoreboardReducer(state, action);
+  return authReducer(state, action);
 }

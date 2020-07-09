@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS pddl-builder
+FROM ubuntu:20.04 AS pddl-builder
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     cmake     \
@@ -26,7 +26,7 @@ RUN mvn dependency:go-offline
 COPY . /src
 RUN mvn package -Dmaven.test.skip=true
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG JAVA_PACKAGE=openjdk-11-jre-headless
 ARG RUN_JAVA_VERSION=1.3.5
