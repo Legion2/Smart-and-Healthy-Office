@@ -1,7 +1,7 @@
 {
-  "name": "web-app",
-  "short_name": "web-app",
-  "theme_color": "#1976d2",
+  "name": "Smart & Healthy Office",
+  "short_name": "Smart Office",
+  "theme_color": "#4285f4",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",

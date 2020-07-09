@@ -30,6 +30,7 @@ class AIService {
     @Inject
     lateinit var localizationRepository: LocalizationRepository
 
+    @Volatile
     private var history = emptyList<Action>()
 
     @ConfigProperty(name = "ai.enabled")
@@ -49,5 +50,10 @@ class AIService {
         val actions = orchestrator.execute(plan, rooms, users)
         println(actions)
         history = history + actions
+    }
+
+    @Deprecated("only for demo")
+    fun resetHistory() {
+        history = emptyList()
     }
 }

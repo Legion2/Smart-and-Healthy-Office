@@ -2,8 +2,8 @@ package io.github.legion2.smart_and_healthy_office.pddl
 
 import io.github.legion2.smart_and_healthy_office.model.Location
 import io.github.legion2.smart_and_healthy_office.model.Room
-import io.github.legion2.smart_and_healthy_office.notification.Notification
 import io.github.legion2.smart_and_healthy_office.notification.WebPushService
+import io.github.legion2.smart_and_healthy_office.notification.changeRoomNotification
 import java.time.ZonedDateTime
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class Orchestrator {
             return plan.lineSequence().filter { it.isNotBlank() }.map { parseLine(it) }.mapNotNull { line ->
                 when (line) {
                     is Line.PlanAction -> {
-                        interpretAction(line)
+                        interpretAction(line, context)
                     }
                     is Line.Cost -> {
                         println("Plan cost: ${line.cost}")
@@ -56,13 +56,13 @@ class Orchestrator {
         return Line.Cost(match.groupValues[1].toInt())
     }
 
-    private fun interpretAction(action: Line.PlanAction): Action? {
+    private fun interpretAction(action: Line.PlanAction, context: List<Room>): Action? {
         return when (action.name) {
             "change_room" -> {
                 val user = action.parameters[0].removePrefix("user-")
                 val oldRoom = action.parameters[1].removePrefix("room-")
                 val newRoom = action.parameters[2].removePrefix("room-")
-                webPushService.sendPushNotification(user, Notification(title = "action-change-room", body = newRoom))
+                webPushService.sendPushNotification(user, changeRoomNotification(context.getRoom(newRoom), context.getRoom(oldRoom)))
                 Action(action.name, listOf(user, oldRoom, newRoom), ZonedDateTime.now())
             }
             "not_change_room", "add_extra_cost_change_room_cool_down" -> null
@@ -75,4 +75,8 @@ class Orchestrator {
 sealed class Line {
     class PlanAction(val name: String, val parameters: List<String>) : Line()
     class Cost(val cost: Int) : Line()
+}
+
+fun List<Room>.getRoom(roomId: String) : Room {
+    return first { it.id == roomId }
 }
