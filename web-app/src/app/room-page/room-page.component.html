@@ -1,17 +1,17 @@
 <mat-toolbar class="primary-color z-depth-2">
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Smart & Healthy Office </span>
-    <div class="d-flex align-items-center justify-content-center spacer">
-        {{selectedRoom.name}}
-    </div>
-    <button id="logoutButton" mat-icon-button (click)="onLogout()">
-      <mat-icon>logout</mat-icon>
-    </button>
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span *ngIf="!mobileQuery.matches">Smart & Healthy Office </span>
+  <div class="d-flex align-items-center justify-content-center spacer">
+    {{selectedRoom.name}}
+  </div>
+  <button id="logoutButton" mat-icon-button (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side" class="primary-color z-depth-2">
+  <mat-sidenav #drawer [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="primary-color z-depth-2">
     <div class="d-flex flex-column justify-content-center align-items-center m-3">
       <img class="avatar img-thumbnail m-2" src="assets/icons/placeholder.png">
       <h5 class="text m-2">{{user | async}}</h5>
@@ -23,17 +23,14 @@
     </mat-action-list>
     <mat-action-list>
       <mat-divider></mat-divider>
-    <button mat-list-item>
-      <mat-icon class="mr-1">settings</mat-icon> Settings
-    </button>
+      <button mat-list-item (click)="showSettings = true">
+        <mat-icon class="mr-1">settings</mat-icon> Settings
+      </button>
       <mat-divider></mat-divider>
     </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-room [room]="selectedRoom"></app-room>
-    <app-notification></app-notification>
+    <app-room *ngIf="!showSettings" [room]="selectedRoom"></app-room>
+    <app-notification *ngIf="showSettings"></app-notification>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
-

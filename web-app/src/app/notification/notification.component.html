@@ -1,37 +1,41 @@
-<div class="container">
-  <div class="row h-100 justify-content-center align-items-center">
-    <mdb-card class="w-50">
-      <mdb-card-body>
-        <mdb-card-title class="row h-100 justify-content-center align-items-center">
-          <h4>Push Notifications</h4>
-        </mdb-card-title>
-        <div *ngIf="!subscribed">
-          <label>Subscribe to Push Notifications</label>
-          <div class="btn-toolbar mt-0 mb-1">
-            <button mdbBtn color="primary" class="btn-block" [class.spinner]="changingSubscription"
-              [disabled]="changingSubscription" mdbWavesEffect (click)="onSubscribe()">Subscribe</button>
-          </div>
-        </div>
-        <div *ngIf="subscribed">
-          <label>You are subscribed to Push Notifications with this device</label>
-          <div class="btn-toolbar mt-0 mb-1">
-            <button mdbBtn color="basic" class="btn-block" [class.spinner]="changingSubscription"
-              [disabled]="changingSubscription" mdbWavesEffect (click)="onUnsubscribe()">Unsubscribe</button>
-          </div>
-        </div>
-        <div #alert *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-          <button type="button" class="close" aria-label="Close" (click)="successMessage = ''">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          {{ successMessage }}
-        </div>
-        <div #alert *ngIf="errorMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" aria-label="Close" (click)="errorMessage = ''">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          {{ errorMessage }}
-        </div>
-      </mdb-card-body>
-    </mdb-card>
+<div class="mt-lg-5 mt-4">
+  <div class="container">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-md-8 col-lg-6">
+        <mdb-card>
+          <mdb-card-body>
+            <mdb-card-title class="row h-100 justify-content-center align-items-center">
+              <h4>Push Notifications</h4>
+            </mdb-card-title>
+            <div *ngIf="!subscribed">
+              <label>Subscribe to Push Notifications</label>
+              <div class="btn-toolbar mt-0 mb-1">
+                <button mdbBtn color="primary" class="btn-block" [class.spinner]="changingSubscription"
+                  [disabled]="changingSubscription" mdbWavesEffect (click)="onSubscribe()">Subscribe</button>
+              </div>
+            </div>
+            <div *ngIf="subscribed">
+              <label>You are subscribed to Push Notifications with this device</label>
+              <div class="btn-toolbar mt-0 mb-1">
+                <button mdbBtn color="basic" class="btn-block" [class.spinner]="changingSubscription"
+                  [disabled]="changingSubscription" mdbWavesEffect (click)="onUnsubscribe()">Unsubscribe</button>
+              </div>
+            </div>
+            <div #alert *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+              <button type="button" class="close" aria-label="Close" (click)="successMessage = ''">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ successMessage }}
+            </div>
+            <div #alert *ngIf="errorMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+              <button type="button" class="close" aria-label="Close" (click)="errorMessage = ''">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ errorMessage }}
+            </div>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
   </div>
 </div>

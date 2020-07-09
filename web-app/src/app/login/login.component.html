@@ -1,26 +1,29 @@
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <mdb-card class="w-25">
-      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/img%20%2853%29.jpg"
-                      alt="Card image cap"></mdb-card-img>
+<div class="mt-lg-5 mt-4">
+  <div class="container">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-md-8 col-lg-6">
+        <mdb-card>
+          <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+            <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/img%20%2853%29.jpg" alt="Card image cap">
+            </mdb-card-img>
+          </div>
+          <mdb-card-body>
+            <mdb-card-title class="row h-100 justify-content-center align-items-center">
+              <h4>Login</h4>
+            </mdb-card-title>
+            <div class="md-form">
+              <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon>
+              <input mdbInput [(ngModel)]="username" type="text" id="form2" class="form-control">
+              <label for="form2">Username</label>
+            </div>
+            <label>In which room are you currently?</label>
+            <div class="btn-toolbar mt-0">
+              <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect
+                (click)="onLogin(room)">{{room.name}}</button>
+            </div>
+          </mdb-card-body>
+        </mdb-card>
       </div>
-      <mdb-card-body>
-        <mdb-card-title class="row h-100 justify-content-center align-items-center">
-          <h4>Login</h4>
-        </mdb-card-title>
-        <div class="md-form">
-          <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon>
-          <input mdbInput [(ngModel)]="username" type="text" id="form2" class="form-control">
-          <label for="form2">Username</label>
-        </div>
-        <label>In which room are you currently?</label>
-        <div class="btn-toolbar mt-0">
-          <button *ngFor="let room of rooms | async" mdbBtn color="primary" class="btn-block" mdbWavesEffect (click)="onLogin(room)">{{room.name}}</button>
-        </div>
-      </mdb-card-body>
-    </mdb-card>
+    </div>
   </div>
 </div>
-
-
