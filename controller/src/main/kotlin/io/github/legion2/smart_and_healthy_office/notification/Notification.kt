@@ -1,6 +1,6 @@
 package io.github.legion2.smart_and_healthy_office.notification
 
-data class Notification(val actions: List<NotificationAction>? = null,
+data class Notification(val actions: List<NotificationAction> = emptyList(),
                         val badge: String? = null,
                         val body: String? = null,
                         val data: Any? = null,

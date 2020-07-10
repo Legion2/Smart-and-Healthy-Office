@@ -25,6 +25,102 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Path part for operation demoResetActionHistoryPost
+   */
+  static readonly DemoResetActionHistoryPostPath = '/demo/reset-action-history';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `demoResetActionHistoryPost()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  demoResetActionHistoryPost$Response(params?: {
+
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.DemoResetActionHistoryPostPath, 'post');
+    if (params) {
+
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `demoResetActionHistoryPost$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  demoResetActionHistoryPost(params?: {
+
+  }): Observable<void> {
+
+    return this.demoResetActionHistoryPost$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation demoSendNotificationUserPost
+   */
+  static readonly DemoSendNotificationUserPostPath = '/demo/send-notification/{user}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `demoSendNotificationUserPost()` instead.
+   *
+   * This method sends `text/plain` and handles request body of type `text/plain`.
+   */
+  demoSendNotificationUserPost$Response(params: {
+    user: string;
+      body?: string
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.DemoSendNotificationUserPostPath, 'post');
+    if (params) {
+
+      rb.path('user', params.user, {});
+
+      rb.body(params.body, 'text/plain');
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `demoSendNotificationUserPost$Response()` instead.
+   *
+   * This method sends `text/plain` and handles request body of type `text/plain`.
+   */
+  demoSendNotificationUserPost(params: {
+    user: string;
+      body?: string
+  }): Observable<void> {
+
+    return this.demoSendNotificationUserPost$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
    * Path part for operation locationUserGet
    */
   static readonly LocationUserGetPath = '/location/{user}';

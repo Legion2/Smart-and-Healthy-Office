@@ -23,7 +23,7 @@ class RoomRepository {
                 ?: throw IllegalArgumentException("Can not load config file")
 
         rooms = ConcurrentHashMap(roomsConfig.rooms.map { roomMetadata ->
-            roomMetadata.id to Room(roomMetadata.id, roomMetadata.name, roomMetadata.size)
+            roomMetadata.id to Room(roomMetadata.id, roomMetadata.name, roomMetadata.size, roomMetadata.desks)
         }.toMap())
     }
 
