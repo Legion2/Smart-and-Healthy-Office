@@ -10,7 +10,7 @@ import java.util.*
  * @param loudness in dB
  * @param presence is the number of people in the room
  */
-data class Room(val id: String, val name: String, val size: Float, val temperature: Float = 0f, val humidity: Float = 0f, val brightness: Float = 0f, val loudness: Float = 0f, val presence: Int = 0) {
+data class Room(val id: String, val name: String, val size: Float, val workspaces: Int, val temperature: Float = 0f, val humidity: Float = 0f, val brightness: Float = 0f, val loudness: Float = 0f, val presence: Int = 0) {
     internal val stress: Int
         get() {
             // Temperature Stress
