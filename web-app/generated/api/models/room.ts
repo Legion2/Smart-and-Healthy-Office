@@ -9,4 +9,5 @@ export interface Room {
   size: number;
   stress: number;
   temperature: number;
+  desks: number;
 }

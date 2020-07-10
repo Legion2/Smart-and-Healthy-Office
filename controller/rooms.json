@@ -3,22 +3,26 @@
         {
             "id": "kitchen",
             "name": "Kitchen",
-            "size": 20
+            "size": 20,
+            "desks": 0
         },
         {
             "id": "office",
             "name": "Office Room",
-            "size": 100
+            "size": 100,
+            "desks": 5
         },
         {
             "id": "meeting-room",
             "name": "Meeting Room",
-            "size": 20
+            "size": 20,
+            "desks": 0
         },
         {
             "id": "shared-room",
             "name": "Shared Room",
-            "size": 30
+            "size": 30,
+            "desks": 2
         }
     ]
 }
