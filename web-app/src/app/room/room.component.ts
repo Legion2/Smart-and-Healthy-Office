@@ -8,4 +8,7 @@ import { Room } from '../../../generated/api/models/room';
 })
 export class RoomComponent {
   @Input('room') room :Room;
+  get freeDesks() {
+    return Math.max(this.room.desks - this.room.presence, 0)
+  }
 }

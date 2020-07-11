@@ -18,7 +18,7 @@ internal class PddlProblemGeneratorTest {
     @Test
     fun testLoadTemplates() {
         val (domain, plan) = generator.generateProblem(
-                listOf(Room("room1", "test", 50f)),
+                listOf(Room("room1", "test", 50f, 2)),
                 mapOf("user1" to Location.Room("room1")),
                 emptyList())
         println(domain)
