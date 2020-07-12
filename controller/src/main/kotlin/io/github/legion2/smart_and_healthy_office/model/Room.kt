@@ -43,9 +43,9 @@ data class Room(val id: String, val name: String, val size: Float, val desks: In
             //brightness Stress
             val brightnessStress = when (brightness) {
                 //for LUX sensors:
-                in 300f..500f -> 0
-                in 200f..300f -> rangeToStress(300f, 200f, brightness)
-                in 500f..750f -> rangeToStress(500f, 750f, brightness)
+                in 400f..700f -> 0
+                in 200f..400f -> rangeToStress(400f, 200f, brightness)
+                in 700f..2000f -> rangeToStress(700f, 2000f, brightness)
                 else -> 100
             }
 
