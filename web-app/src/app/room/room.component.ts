@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Room } from '../../../generated/api/models/room';
 import { RoomTendencies } from '../room-page/room-page.component';
 

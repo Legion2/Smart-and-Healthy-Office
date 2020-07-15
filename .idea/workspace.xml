@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4c4ce8ed-bf5d-4684-ae5d-8bcdabf0fc2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-app/src/app/room/room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room/room.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-app/src/app/room/room.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room/room.component.ts" afterDir="false" />
@@ -241,6 +240,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1592600590974" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1595024216702">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1595024216702" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1592745139515">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
