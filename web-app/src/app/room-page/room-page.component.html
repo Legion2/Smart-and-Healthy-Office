@@ -30,7 +30,7 @@
     </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-room *ngIf="!showSettings" [room]="selectedRoom"></app-room>
+    <app-room *ngIf="!showSettings" [room]="selectedRoom" [roomTendencies]="roomTendencies"></app-room>
     <app-notification *ngIf="showSettings"></app-notification>
   </mat-sidenav-content>
 </mat-sidenav-container>

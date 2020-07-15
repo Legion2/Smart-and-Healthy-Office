@@ -1,13 +1,12 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Room } from 'generated/api/models';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
-import { selectUser, selectUserRoom, State } from '../reducers';
 import { DataService } from '../shared/data.service';
-
+import { Observable, BehaviorSubject, combineLatest, pipe } from 'rxjs';
+import { map, pairwise, startWith, take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { State, selectUserRoom, selectUser } from '../reducers';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-room-page',
@@ -29,6 +28,13 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
+  roomTendencies: RoomTendencies = {
+    humidity: 0,
+    loudness: 0,
+    temperature: 0,
+    brightness: 0
+  };
+
   constructor(private store: Store<State>,
               private dataService: DataService,
               private authService: AuthService,
@@ -48,7 +54,15 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.rooms = this.dataService.rooms;
     this.selectedRoomId = new BehaviorSubject<string>(null);
     this.store.select(selectUserRoom).pipe(take(1)).toPromise().then(test => this.selectedRoomId.next(test));
-    combineLatest(this.dataService.rooms, this.selectedRoomId.asObservable()).pipe(map(([list, selectedId]) => list.find(room => room.id === selectedId))).subscribe(room => this.selectedRoom = room);
+    combineLatest(this.dataService.rooms, this.selectedRoomId.asObservable()).pipe(map(([list, selectedId]) => list.find(room => room.id === selectedId)), pairwise()).subscribe(room => {
+      this.selectedRoom = room[1];
+      if (room[0] != null) {
+        this.roomTendencies.humidity = this.calculateValueTendency(room[0].humidity, room[1].humidity);
+        this.roomTendencies.temperature = this.calculateValueTendency(room[0].temperature, room[1].temperature);
+        this.roomTendencies.brightness = this.calculateValueTendency(room[0].brightness, room[1].brightness);
+      }
+    });
+
   }
 
   ngOnDestroy(): void {
@@ -58,4 +72,22 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   onLogout(){
     this.authService.logout();
   }
+
+  calculateValueTendency(previousValue: number, latestValue: number): number {
+
+    if (previousValue !== null) {
+      const tmp = latestValue - previousValue;
+      const diff = (tmp / latestValue) * 100;
+      return diff;
+    }
+    return 0;
+  }
 }
+
+export class RoomTendencies {
+  humidity: number;
+  temperature: number;
+  loudness: number;
+  brightness: number;
+}
+
