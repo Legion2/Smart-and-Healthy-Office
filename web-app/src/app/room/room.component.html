@@ -13,6 +13,10 @@
             </div>
           </div>
           <mdb-card-body>
+            <mdb-badge success="true" pill="false" class="float-right">
+              <mdb-icon fas [icon]="roomTendencies.humidity.indicator"></mdb-icon>
+              {{roomTendencies.humidity.value | number:'1.0-1'}}%
+            </mdb-badge>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -27,6 +31,10 @@
             </div>
           </div>
           <mdb-card-body>
+            <mdb-badge success="true" pill="false" class="float-right">
+              <mdb-icon fas [icon]="roomTendencies.temperature.indicator"></mdb-icon>
+              {{roomTendencies.temperature.value | number:'1.0-1'}}%
+            </mdb-badge>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -41,6 +49,10 @@
             </div>
           </div>
           <mdb-card-body>
+            <mdb-badge success="true" pill="false" class="float-right">
+              <mdb-icon fas [icon]="roomTendencies.loudness.indicator"></mdb-icon>
+              {{roomTendencies.loudness.value | number:'1.0-1'}}%
+            </mdb-badge>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -55,6 +67,10 @@
             </div>
           </div>
           <mdb-card-body>
+            <mdb-badge success="true" pill="false" class="float-right">
+              <mdb-icon fas [icon]="roomTendencies.brightness.indicator"></mdb-icon>
+              {{roomTendencies.brightness.value | number:'1.0-1'}}%
+            </mdb-badge>
           </mdb-card-body>
         </mdb-card>
       </div>
