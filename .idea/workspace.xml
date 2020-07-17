@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c4ce8ed-bf5d-4684-ae5d-8bcdabf0fc2a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room-page/room-page.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/src/app/room/room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room/room.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/src/app/room/room.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/app/room/room.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592745132919</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed badge bug, where badges will be displayed twice">
+      <created>1595024719405</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595024719405</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +142,8 @@
     <MESSAGE value="added login window + cors settings + backend url" />
     <MESSAGE value="added data service + refactoring" />
     <MESSAGE value="added auth guard + added home component + refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="added auth guard + added home component + refactoring" />
+    <MESSAGE value="fixed badge bug, where badges will be displayed twice" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed badge bug, where badges will be displayed twice" />
   </component>
   <component name="WindowStateProjectService">
     <state x="63" y="89" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592591537337">
@@ -160,10 +166,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1592742484439" />
-    <state x="227" y="23" width="985" height="800" key="CommitChangelistDialog2" timestamp="1592745132649">
+    <state x="227" y="23" width="985" height="800" key="CommitChangelistDialog2" timestamp="1595024719253">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="227" y="23" width="985" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1592745132649" />
+    <state x="227" y="23" width="985" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1595024719253" />
     <state x="144" y="52" key="DiffContextDialog" timestamp="1592593726753">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -244,10 +250,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1595024216702" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1592745139515">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595024724755">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1592745139515" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595024724755" />
     <state x="418" y="82" width="604" height="735" key="find.popup" timestamp="1592503352709">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
