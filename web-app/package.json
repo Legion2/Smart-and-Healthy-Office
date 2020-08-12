@@ -26,7 +26,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ngrx/store": "^9.2.0",
     "animate.css": "^4.1.0",
-    "bootstrap": "^4.5.1",
+    "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
     "hammerjs": "^2.0.8",
     "mdbootstrap": "^4.19.1",
