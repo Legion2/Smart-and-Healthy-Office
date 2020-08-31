@@ -1,4 +1,4 @@
-FROM node:14.8.0-alpine as builder
+FROM node:14.9.0-alpine as builder
 RUN apk add gettext
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
